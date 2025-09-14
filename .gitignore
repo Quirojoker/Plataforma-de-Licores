@@ -1,0 +1,12 @@
+# Ignorar entorno virtual
+venv/
+
+# Archivos de compilación de Python
+__pycache__/
+*.pyc
+
+# Archivos de Media (subidas de usuarios)
+media/
+
+# Configuración de VS Code
+.vscode/
