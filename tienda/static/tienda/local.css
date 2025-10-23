@@ -1,0 +1,1539 @@
+/* --- Estilos Generales --- */
+
+:root {
+    --primary-color: #0077b6;
+    /* Azul profundo nórdico /
+    --secondary-color: #0096c7; / Azul claro para hover */
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #1a1a1a;
+}
+
+/* --- Estilos del logo --- */
+.logo {
+    width: 50px;
+    height: auto;
+    filter: brightness(1) invert(1);
+    transition: filter 0.5s ease-in-out;
+}
+
+/* Estilos globales */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+p,
+li {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #e0e0e0;
+    /* Cambiado a gris claro */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--primary-color);
+    line-height: 1.4;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+a {
+    text-decoration: none;
+    transition: color .4s ease;
+    font-size: 15px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+img {
+    max-width: 100%;
+    transition: .4s ease;
+}
+
+.pt-6 {
+    padding-top: 70px;
+}
+
+.pb-6 {
+    padding-bottom: 70px;
+}
+
+.container {
+    max-width: 1240px;
+}
+
+/* --- Estilos del header --- */
+
+.header {
+    opacity: 0;
+    transition: 1.0s ease-in-out;
+}
+
+header.loaded {
+    opacity: 1;
+}
+
+.navbar-brand {
+    width: 120px;
+    height: auto;
+    transition: color 0.5s ease-in-out;
+    color: white !important;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-brand:hover span {
+    color: var(--primary-color) !important;
+    transition: 0.5s ease-in-out;
+}
+
+.navbar-brand img.logo {
+    transition: filter 0.5s ease-in-out;
+    filter: brightness(1) invert(1);
+}
+
+.navbar-brand:hover img.logo {
+    filter: brightness(1) invert(1) drop-shadow(0 0 5px var(--primary-color));
+}
+
+.navbar-brand span {
+    color: #e0e0e0;
+}
+
+.navbar-nav .nav-link {
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.nav .navbar-nav .nav-link .nav-link {
+    color: #e0e0e0;
+    /* Cambiado a gris claro */
+    padding: 5px 20px;
+    font-size: 16px;
+}
+
+.search-icon {
+    border-right: 2px solid #e0e0e0;
+    /* Cambiado a gris claro */
+    padding: 4px 22px;
+    margin-right: 25px;
+    font-size: 20px;
+}
+
+.shop-icon ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.shop-icon ul li a {
+    background-color: var(--primary-color);
+    margin: 1px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    color: black;
+    font-size: 20px;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.shop-icon ul li a:hover {
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px var(--primary-color);
+}
+
+.shop-icon ul li i {
+    transition: color 0.3s ease-in-out;
+}
+
+.shop-icon ul li a:hover i {
+    color: var(--primary-color);
+}
+
+/* Estilo del banner (slide) */
+.hero-sec {
+    background-color: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slider .slides,
+.hero-slider .slides-1,
+.hero-slider .slides-2,
+.hero-slider .slides-3 {
+    background-size: cover;
+    background-position: center;
+    padding: 180px 0;
+    color: white;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-content {
+    max-width: 600px;
+    text-align: left;
+    padding: 5px;
+    padding-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.hero-slider img {
+    position: absolute;
+    z-index: 1;
+}
+
+.overlay-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.overlay-images img {
+    position: absolute;
+}
+
+.btn {
+    padding: 10px 25px;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 0 20px 5px var(--primary-color);
+    color: var(--primary-color);
+    transition: 0.5s;
+}
+
+/* slide 1 */
+.overlay-images .ice:nth-child(1)
+
+/*hielo-4*/
+    {
+    bottom: 0;
+    left: 0;
+}
+
+.overlay-images .ice:nth-child(2)
+
+/*hielo-4*/
+    {
+    top: 0%;
+    left: 930px;
+    transform: rotate(180deg);
+}
+
+.overlay-images .ice:nth-child(3)
+
+/*hielo-3*/
+    {
+    height: 60%;
+    top: 0%;
+    left: 900px;
+    transform: rotate(180deg);
+}
+
+.overlay-images .ice:nth-child(4)
+
+/*hielo-3*/
+    {
+    height: 60%;
+    bottom: 0;
+    left: 0;
+}
+
+.overlay-images .glass
+
+/* cristal*/
+    {
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%) translateY(40px);
+}
+
+/* Animación de la lata de tecate */
+@keyframes tecateIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(80px) translateZ(50px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(150px) translateZ(50px) scale(1);
+    }
+}
+
+@keyframes tecateFloat {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(150px) translateZ(50px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(140px) translateZ(60px);
+    }
+}
+
+@keyframes tecatebrightness {
+
+    0%,
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+
+    50% {
+        filter: brightness(1.0) contrast(1.2);
+    }
+}
+
+.overlay-images .tecate
+
+/*tecate*/
+    {
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translatey(150px);
+    z-index: 3;
+    animation: tecateIn 2s ease-out forwards, tecateFloat 3s ease-in-out infinite, tecatebrightness 3s ease-in-out infinite;
+}
+
+/* Animación  botella de corona */
+@keyframes coronaIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(80px) translateZ(50px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(150px) translateZ(50px) scale(1);
+    }
+}
+
+@keyframes coronaFloat {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(50px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(60px);
+    }
+}
+
+@keyframes coronabrightness {
+
+    0%,
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+
+    50% {
+        filter: brightness(1.0) contrast(1.2);
+    }
+}
+
+.overlay-images .corona
+
+/*corona*/
+    {
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 56%;
+    transform: translate(-50%, -50%) translatey(50px);
+    z-index: 2;
+    animation: coronaIn 2s ease-out forwards, coronaFloat 3s ease-in-out infinite, coronabrightness 3s ease-in-out infinite;
+}
+
+/* Animación  lata poker*/
+@keyframes pokerIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(80px) translateZ(50px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(150px) translateZ(50px) scale(1);
+    }
+}
+
+@keyframes pokerFloat {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(140px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(150px);
+    }
+}
+
+@keyframes pokerbrightness {
+
+    0%,
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+
+    50% {
+        filter: brightness(1.0) contrast(1.2);
+    }
+}
+
+.overlay-images .poker-lata
+
+/*poker-lata*/
+    {
+    height: 46%;
+    position: absolute;
+    top: 50%;
+    left: 43%;
+    transform: translate(-50%, -50%) translatey(140px);
+    z-index: 2;
+    animation: pokerIn 2s ease-out forwards, pokerFloat 3s ease-in-out infinite, pokerbrightness 3s ease-in-out infinite;
+}
+
+.overlay-images .ice:nth-child(9)
+
+/*hielo*/
+    {
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(50px);
+}
+
+.slides .slider-content {
+    position: relative;
+    height: 600px;
+}
+
+.slides .slider-content h6 {
+    position: absolute;
+    top: -15%;
+    left: 10%;
+}
+
+.titulo-principal {
+    position: absolute;
+    top: -12%;
+    left: -15%;
+}
+
+.p-principal {
+    position: absolute;
+    top: -5%;
+    left: -10%;
+}
+
+.titulo-secundario {
+    position: absolute;
+    top: 35%;
+    left: 140%;
+    white-space: nowrap;
+}
+
+.slides .slider-content p {
+    white-space: normal;
+    text-align: center;
+    font-weight: normal;
+}
+
+.slides .slider-content .btn {
+    position: absolute;
+    left: 29%;
+}
+
+/* slide 2 */
+.slides-1 .overlay-images .mitad-bodega-1
+
+/* mitad-Bodega-1*/
+    {
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    filter: blur(3px);
+}
+
+.slides-1 .overlay-images .mitad-bodega-2
+
+/* mitad-Bodega-2*/
+    {
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 71%;
+    transform: scaleX(-1);
+    filter: blur(3px);
+}
+
+.slides-1 .overlay-images .uvas:nth-child(3)
+
+/* uvas*/
+    {
+    height: 59%;
+    position: absolute;
+    left: 0%;
+    transform: rotate(0deg);
+    filter: blur(1px);
+}
+
+.slides-1 .overlay-images .uvas:nth-child(4)
+
+/* uvas*/
+    {
+    height: 59%;
+    position: absolute;
+    left: 49.6%;
+    top: 0%;
+    transform: rotate(0deg) scaleX(-1);
+    filter: blur(1px);
+}
+
+/* Animación Botella de Vino */
+@keyframes wineIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(100%) translateX(50%) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateX(50%) translateY(42%) scale(1);
+    }
+}
+
+@keyframes wineLight {
+
+    0%,
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+
+    50% {
+        filter: brightness(1.2) contrast(1.1);
+    }
+}
+
+.slides-1 .overlay-images .vino
+
+/* vino*/
+    {
+    height: 110%;
+    position: absolute;
+    top: -8%;
+    left: 34%;
+    animation: wineIn 2s ease-out forwards, wineLight 6s ease-in-out infinite;
+}
+
+/* Animación copa-4 */
+@keyframes glassShine {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.2) saturate(1.2);
+    }
+}
+
+.slides-1 .overlay-images .copa-4
+
+/* copa-4*/
+    {
+    height: 70%;
+    position: absolute;
+    top: 42%;
+    left: 49%;
+    animation: glassShine 6s ease-in-out infinite;
+}
+
+/* Animación copa-2 */
+@keyframes glassShine {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.2) saturate(1.2);
+    }
+}
+
+.slides-1 .overlay-images .copa-2
+
+/* copa-2*/
+    {
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    animation: glassShine 6s ease-in-out infinite;
+}
+
+/* Animación copa-1 */
+@keyframes glassShine {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.2) saturate(1.2);
+    }
+}
+
+.slides-1 .overlay-images .copa-1
+
+/* copa-1*/
+    {
+    height: 50%;
+    position: absolute;
+    top: 40%;
+    left: 70.2%;
+    transform: scaleX(-1);
+    animation: glassShine 6s ease-in-out infinite;
+}
+
+.slides-1 .slider-content {
+    position: relative;
+    height: 600px;
+}
+
+.slides-1 .slider-content .titulo-principal {
+    position: absolute;
+    top: -30%;
+    left: 87%;
+    white-space: nowrap;
+}
+
+.slides-1 .slider-content .titulo-secundario {
+    position: absolute;
+    top: -28%;
+    left: 55%;
+}
+
+.slides-1 .slider-content p {
+    position: absolute;
+    top: 54%;
+    left: 72%;
+    color: white;
+    white-space: nowrap;
+}
+
+.slides-1 .slider-content .btn {
+    position: absolute;
+    top: 59%;
+    left: 81%;
+    white-space: nowrap;
+}
+
+/* slide 3 */
+
+/* Animación de humo */
+@keyframes moveSmoke-1 {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-40%);
+    }
+}
+
+/* humo-1*/
+.slides-2 .overlay-images .humo-1 {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    height: 100%;
+    width: 200%;
+    opacity: 0.25;
+    animation: moveSmoke-1 30s linear infinite;
+    filter: blur(4px);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    z-index: 2;
+}
+
+/* humo-2*/
+@keyframes moveSmoke-2 {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(40%);
+    }
+}
+
+.slides-2 .overlay-images .humo-2 {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    height: 100%;
+    width: 200%;
+    opacity: 0.25;
+    animation: moveSmoke-2 30s linear infinite;
+    filter: blur(4px);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    z-index: 2;
+}
+
+/*humo-3*/
+.slides-2 .overlay-images .humo-3 {
+    position: absolute;
+    top: 0;
+    left: 3%;
+    height: 100%;
+    width: 200%;
+    opacity: 0.25;
+    filter: blur(4px);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    z-index: 2;
+}
+
+/* humo-4*/
+.slides-2 .overlay-images .humo-4 {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    transform: translateX(3%);
+    filter: blur(3px);
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+}
+
+/* humo-5*/
+.slides-2 .overlay-images .humo-5 {
+    position: absolute;
+    top: 35%;
+    right: -7.5%;
+    height: 50%;
+    opacity: 0.25;
+    filter: blur(4px);
+    rotate: -90deg;
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+}
+
+/* Animación humo-6 */
+@keyframes moveSmoke-6 {
+    from {
+        transform: translate(0);
+    }
+
+    to {
+        transform: translateX(40%);
+    }
+}
+
+/* humo-6*/
+.slides-2 .overlay-images .humo-6 {
+    position: absolute;
+    top: 35%;
+    right: -7.5%;
+    height: 50%;
+    opacity: 0.25;
+    filter: blur(4px);
+    rotate: -90deg;
+    animation: moveSmoke-6 30s linear infinite;
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+}
+
+/* humo-7*/
+.slides-2 .overlay-images .humo-7 {
+    position: absolute;
+    top: 40%;
+    left: -7.5%;
+    height: 50%;
+    opacity: 0.25;
+    filter: blur(4px);
+    rotate: 90deg;
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+
+}
+
+/* Animación humo-8 */
+@keyframes moveSmoke-8 {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-40%);
+    }
+}
+
+/* humo-8*/
+.slides-2 .overlay-images .humo-8 {
+    position: absolute;
+    top: 40%;
+    left: -7.5%;
+    height: 50%;
+    opacity: 0.25;
+    filter: blur(4px);
+    rotate: 90deg;
+    animation: moveSmoke-8 30s linear infinite;
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 1) 10%,
+            rgba(255, 255, 255, 1) 80%,
+            transparent 100%);
+}
+
+/* Whisky */
+.slides-2 .overlay-images .whisky {
+    height: 75%;
+    position: absolute;
+    top: 58%;
+    left: 56%;
+    transform: translate(-50%, -50%);
+}
+
+/* Aguardiente */
+.slides-2 .overlay-images .aguardiente {
+    height: 80%;
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Ron */
+.slides-2 .overlay-images .ron {
+    height: 65%;
+    position: absolute;
+    top: 58%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+}
+
+/* Luz */
+.slides-2 .overlay-images .luz {
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    opacity: 0.3;
+}
+
+.slides-2 .slider-content {
+    position: relative;
+    height: 600px;
+}
+
+.slides-2 .slider-content .titulo-principal {
+    position: absolute;
+    top: -28%;
+    left: 87%;
+    white-space: nowrap;
+}
+
+.slides-2 .slider-content .titulo-secundario {
+    position: absolute;
+    top: -25%;
+    left: 25%;
+}
+
+.slides-2 .slider-content .btn {
+    position: absolute;
+    top: 59%;
+    left: 88%;
+    white-space: nowrap;
+}
+
+/* slide 4 */
+
+.slides-3 .overlay-images .hojas-1 {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    top: 0%;
+    right: 0%;
+    filter: blur(3px);
+}
+
+.slides-3 .overlay-images .hojas {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    top: 0%;
+    left: 10%;
+    z-index: 2;
+}
+
+.slides-3 .overlay-images .recetas-1 {
+    position: absolute;
+    width: 150%;
+    height: auto;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.slides-3 .slider-content .titulo-principal {
+    position: absolute;
+    top: -100px;
+    left: 0%;
+    font-size: 6rem;
+}
+
+.slides-3 .slider-content .btn {
+    position: absolute;
+    top: 200px;
+    right: -400px
+}
+
+.slides-3 .slider-content .frase-1 {
+    position: absolute;
+    top: 160px;
+    left: 120px;
+    transform: translateX(-50%);
+}
+
+.slides-3 .slider-content .frase-2 {
+    position: absolute;
+    top: 90px;
+    left: 385px;
+    transform: translate(-50%, -50%);
+}
+
+.slides-3 .slider-content .frase-3 {
+    position: absolute;
+    top: 180px;
+    left: 680px;
+    transform: translate(-50%, -50%);
+}
+
+.slides-3 .slider-content .frase-4 {
+    position: absolute;
+    top: -115px;
+    right: -70px;
+    transform: translate(100%);
+}
+
+.slides-3 .slider-content .frase-5 {
+    position: absolute;
+    top: 230px;
+    right: -70px;
+    transform: translate(160%);
+}
+
+/* Animación de nieve*/
+
+.snow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10%;
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    animation: fall linear infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateX(0) translateY(-10vh) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(20px) translateY(50vh) rotate(180deg);
+    }
+
+    100% {
+        transform: translateX(-20px) translateY(110vh) rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+/* Estilo de las categorias */
+
+.slides-cat {
+    text-align: center;
+}
+
+.slides-cat img {
+    width: 165px;
+    margin: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.slides-cat .cat-text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 12px;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.slides-cat:hover img {
+    transform: scale(1.01);
+}
+
+.slides-cat:hover .cat-text {
+    color: var(--primary-color);
+    transition: 0.5s ease-in-out;
+}
+
+.slides-cat .poker-botella {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .aguardiente {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .ron {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .whisky {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .cerveza-artesanal {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .vino-comercial {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .vino-artesanal {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .sangría-1 {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+/* Estilo de los productos */
+
+.product-sec {
+    background-color: #222222;
+    /* Cambiado a gris oscuro */
+}
+
+.product-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin-bottom: 25px;
+    transition:
+        box-shadow 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+    will-change: transform, box-shadow;
+}
+
+.product-box:hover {
+    box-shadow: 0 4px 20px 0 rgba(0, 119, 182, 0.65),
+        0 0 0 1px rgba(0, 119, 182, 0.2);
+    transform: translateY(-8px);
+}
+
+.product-box img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.pr-icon ul {
+    position: absolute;
+    top: 73%;
+    right: 25%;
+    transition: all .4s ease;
+    transform: translatey(40px);
+    display: flex;
+    opacity: 0;
+    gap: 5px;
+
+}
+
+.pr-icon ul li a {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-content: center;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    color: black;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.pr-icon ul li a:hover {
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px var(--primary-color);
+}
+
+.pr-icon ul li a:hover i {
+    color: var(--primary-color);
+}
+
+.product-box h3 {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pr-text {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.pr-text h3 {
+    font-size: 14px;
+}
+
+.pr-img {
+    overflow: hidden;
+}
+
+.product-box:hover img {
+    transform: scale(1.15);
+}
+
+.product-box:hover .pr-icon ul {
+    transform: inherit;
+    opacity: 1;
+    top: 60%;
+}
+
+.title h6 {
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+.title h2 {
+    font-size: 36px;
+    text-transform: capitalize;
+    color: var(--primary-color);
+}
+
+/* Estilo promociones */
+
+.product-box-1 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin-bottom: 25px;
+}
+
+.product-box-1 .sangría-1-1L {
+    position: relative;
+    width: auto;
+    height: 165px;
+}
+
+
+/* Estilos para recetas img */
+
+.cta-recipe-image {
+    width: 95%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgb(0, 0, 0);
+}
+
+.cta-recipe-link {
+    display: block;
+    text-align: center;
+}
+
+.cta-recipe-link:hover .cta-recipe-image {
+    transform: scale(1.01);
+}
+
+/* Estilos para recetas */
+
+.recipe-promo-sec {
+    margin-top: 30px;
+}
+
+.recipe-hero {
+    background-color: #212529;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgb(0, 0, 0);
+    width: 95%;
+    margin: 0 auto;
+    height: 180px;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.recipe-hero .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.recipe-hero .col-md-4,
+.recipe-hero .col-md-5,
+.recipe-hero .col-md-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe-image-float {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    left: 7%;
+    transition: all 0.5s ease;
+}
+
+.recipe-hero:hover .recipe-image-float {
+    transition: 0.8s ease;
+    transform: translateX(-40px) scale(1.2);
+}
+
+.recipe-hero:hover .recipe-button-animate {
+    transition: 0.8s ease;
+    transform: translateX(40px) scale(1.1);
+}
+
+/* Horarios */
+
+.delivery-moto-sec {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* Estilos moto */
+
+.delivery-moto-image {
+    max-height: 200px;
+    width: auto;
+    display: block;
+    transform: rotate(-20deg);
+}
+
+.delivery-city-title {
+    margin-top: 5px;
+}
+
+/* Estilos para el Cuadro de Horarios */
+.schedule-box {
+    background-color: #212529;
+    box-shadow: 0 4px 15px rgb(0, 0, 0) !important;
+    border-radius: 20px;
+    max-width: 350px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.schedule-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.schedule-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #ced4da;
+}
+
+.schedule-list li:last-child {
+    border-bottom: none;
+}
+
+.delivery-moto-sec .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+
+/* Estilos para la burbuja de WhatsApp */
+
+.whatsapp-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.whatsapp-bubble:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-bubble i {
+    font-size: 28px;
+}
+
+/* Estilos para Efecto Parallax */
+
+#age-verifier * {
+    margin: 0;
+    padding: 0;
+    font-family: 'cinzel', sans-serif;
+}
+
+#parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#parallax-container:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(10, 42, 67, 0.0), rgba(10, 42, 67, 0.3), rgba(10, 42, 67, 1.0));
+    z-index: 10000;
+}
+
+#parallax-container:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a2a43;
+    z-index: 10000;
+    mix-blend-mode: color;
+}
+
+#parallax-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.parallax-img-4 {
+    z-index: 2;
+}
+
+#text {
+    position: fixed;
+    left: 24%;
+    top: 43%;
+    color: white;
+    font-size: 10em;
+    z-index: 1;
+}
+
+#text:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transition: .6s ease;
+}
+
+#age-verifier {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 99999;
+}
+
+.age-verifier-spacer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#verify-button {
+    position: relative;
+    top: -10%;
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    padding: 15px 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: 3px solid #e0e0e0;
+    background-color: transparent;
+    color: #e0e0e0;
+    font-family: 'Cinzel', serif;
+    transition: all 0.3s ease;
+    z-index: 999999;
+}
+
+#verify-button.is-visible {
+    opacity: 1;
+    transform: translateY(-20px);
+}
+
+#verify-button:hover {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px 5px var(--primary-color);
+    transition:
+        color .6s ease-in-out box-shadow 0.6s ease-in-out,
+        transform 0.6s ease-in-out;
+    will-change: transform, box-shadow;
+}
