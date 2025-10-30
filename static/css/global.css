@@ -1,0 +1,92 @@
+/* --- Estilos Generales --- */
+
+:root {
+    --primary-color: #0077b6;
+    /* Azul profundo nórdico /
+    --secondary-color: #0096c7; / Azul claro para hover */
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #1a1a1a;
+}
+
+/* --- Estilos del logo --- */
+.logo {
+    width: 50px;
+    height: auto;
+    filter: brightness(1) invert(1);
+    transition: filter 0.5s ease-in-out;
+}
+
+/* Estilos globales */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+p,
+li {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #e0e0e0;
+    /* Cambiado a gris claro */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--primary-color);
+    line-height: 1.4;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+a {
+    text-decoration: none;
+    transition: color .4s ease;
+    font-size: 15px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+img {
+    max-width: 100%;
+    transition: .4s ease;
+}
+
+.pt-6 {
+    padding-top: 70px;
+}
+
+.pb-6 {
+    padding-bottom: 70px;
+}
+
+.container {
+    max-width: 1240px;
+}

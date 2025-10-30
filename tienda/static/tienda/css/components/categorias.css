@@ -1,0 +1,82 @@
+/* Estilo de las categorias */
+
+.slider-category .slides-cat a{
+    color: white;
+}
+
+.slides-cat {
+    text-align: center;
+}
+
+.slides-cat img {
+    width: 165px;
+    margin: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.slides-cat .cat-text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 12px;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.slides-cat:hover img {
+    transform: scale(1.01);
+}
+
+.slides-cat:hover .cat-text {
+    color: var(--primary-color);
+    transition: 0.5s ease-in-out;
+}
+
+.slides-cat .poker-botella {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .aguardiente {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .ron {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .whisky {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .cerveza-artesanal {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .vino-comercial {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .vino-artesanal {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}
+
+.slides-cat .sangría-1 {
+    width: auto;
+    height: 190px;
+    transform: rotate(-15deg);
+}

@@ -1,0 +1,74 @@
+/* Estilos para recetas img */
+
+.cta-recipe-image {
+    width: 95%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgb(0, 0, 0);
+}
+
+.cta-recipe-link {
+    display: block;
+    text-align: center;
+}
+
+.cta-recipe-link:hover .cta-recipe-image {
+    transform: scale(1.01);
+}
+
+/* Estilos para recetas */
+
+.recipe-promo-sec {
+    margin-top: 30px;
+}
+
+.recipe-hero {
+    background-color: #212529;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgb(0, 0, 0);
+    width: 95%;
+    margin: 0 auto;
+    height: 180px;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.recipe-hero .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.recipe-hero .col-md-4,
+.recipe-hero .col-md-5,
+.recipe-hero .col-md-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe-image-float {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    left: 7%;
+    transition: all 0.5s ease;
+}
+
+.recipe-hero:hover .recipe-image-float {
+    transition: 0.8s ease;
+    transform: translateX(-40px) scale(1.2);
+}
+
+.recipe-hero:hover .recipe-button-animate {
+    transition: 0.8s ease;
+    transform: translateX(40px) scale(1.1);
+}

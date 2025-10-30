@@ -1,0 +1,55 @@
+/* Horarios */
+
+.delivery-moto-sec {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* Estilos moto */
+
+.delivery-moto-image {
+    max-height: 200px;
+    width: auto;
+    display: block;
+    transform: rotate(-20deg);
+}
+
+.delivery-city-title {
+    margin-top: 5px;
+}
+
+/* Estilos para el Cuadro de Horarios */
+.schedule-box {
+    background-color: #212529;
+    box-shadow: 0 4px 15px rgb(0, 0, 0) !important;
+    border-radius: 20px;
+    max-width: 350px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.schedule-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.schedule-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #ced4da;
+}
+
+.schedule-list li:last-child {
+    border-bottom: none;
+}
+
+.delivery-moto-sec .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}

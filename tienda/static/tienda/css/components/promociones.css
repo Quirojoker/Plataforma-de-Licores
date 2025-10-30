@@ -1,0 +1,15 @@
+/* Estilo promociones */
+
+.product-box-1 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin-bottom: 25px;
+}
+
+.product-box-1 .sangría-1-1L {
+    position: relative;
+    width: auto;
+    height: 165px;
+}

@@ -1,0 +1,105 @@
+/* --- Estilos del header --- */
+
+.header {
+    opacity: 0;
+    transition: 1.0s ease-in-out;
+}
+
+header.loaded {
+    opacity: 1;
+}
+
+.navbar-brand {
+    width: 120px;
+    height: auto;
+    transition: color 0.5s ease-in-out;
+    color: white !important;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-brand:hover span {
+    color: var(--primary-color) !important;
+    transition: 0.5s ease-in-out;
+}
+
+.navbar-brand img.logo {
+    transition: filter 0.5s ease-in-out;
+    filter: brightness(1) invert(1);
+}
+
+.navbar-brand:hover img.logo {
+    filter: brightness(1) invert(1) drop-shadow(0 0 5px var(--primary-color));
+}
+
+.navbar-brand span {
+    color: #e0e0e0;
+}
+
+.navbar-nav .nav-link {
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.nav .navbar-nav .nav-link .nav-link {
+    color: #e0e0e0;
+    /* Cambiado a gris claro */
+    padding: 5px 20px;
+    font-size: 16px;
+}
+
+.search-icon {
+    border-right: 2px solid #e0e0e0;
+    /* Cambiado a gris claro */
+    padding: 4px 22px;
+    margin-right: 25px;
+    font-size: 20px;
+}
+
+.shop-icon ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.shop-icon ul li a {
+    background-color: var(--primary-color);
+    margin: 1px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    color: black;
+    font-size: 20px;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.shop-icon ul li a:hover {
+    background-color: transparent;
+    box-shadow: 0 0 15px 5px var(--primary-color);
+}
+
+.shop-icon ul li i {
+    transition: color 0.3s ease-in-out;
+}
+
+.shop-icon ul li a:hover i {
+    color: var(--primary-color);
+}
+
+.dropdown-menu {
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a !important;
+}
+
+.dropdown-item {
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-color) !important;
+    color: black !important;
+}

@@ -77,7 +77,7 @@ window.addEventListener("load", () => {
 });
 
 // Efecto de nieve //
-const TOTAL_SNOWFLAKES = 20;
+const TOTAL_SNOWFLAKES = 50;
 const snowContainer = document.querySelector('.hero-sec .snow-container');
 
 function createSnowflake() {

@@ -1,0 +1,37 @@
+/* Estilos pagina productos */
+
+/* Modulo Vinos Artesanales */
+.cta-recipe-image-vinos-artesanales {
+    width: 95%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgb(0, 0, 0);
+    filter: blur(1px);
+    
+}
+
+.cta-recipe-link {
+    display: block;
+    text-align: center;
+    position: relative;
+}
+
+.cta-recipe-link:hover .cta-recipe-image-vinos-artesanales {
+    transform: scale(1.01);
+}
+
+.texto-superpuesto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+
+
+

@@ -1,0 +1,386 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi Licorera</title>
+        <meta name="description" content="Compra cervezas, vinos y licores online, con entrega rápida en tu ciudad.">
+
+        <!-- Favicon-->
+        <link rel="icon" type="image/png" href="{% static 'tienda/img/favicon-32x32.png' %}">
+
+        <!-- Font Awesome CSS -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Fuente Cinzel de Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+        <!-- slick css-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+        <!-- Estilos -->
+        <link rel="stylesheet" href="{% static 'css/global.css' %}">
+        <link rel="stylesheet" href="{% static 'tienda/css/main.css' %}">
+    </head>
+
+    <body>
+        <div id="main-site-content">
+            <!-- Barra de navegación-->
+            <header class="header loaded">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <a class="navbar-brand" href="{% url 'inicio' %}">
+                            <img src="{% static 'tienda/img/logo.png' %}" alt="Vikinga" class="logo">
+                            <span class="ms-2 fw-bold fs-4">Valhalla</span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="#Nuestras-Categorías">Categorías</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=2 %}">Cervezas Comerciales</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=3 %}">Cervezas Artesanles</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=4 %}">Vinos Comerciales</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=5 %}">Vinos Artesanales</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=9 %}">Aguardiente</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=10 %}">Ron</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=11 %}">Whisky</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=8 %}">Sangría</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="#">Promociones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="#">Recetas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="#">Contacto</a>
+                                </li>
+                            </ul>
+                            <div class="search-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div class="shop-icon">
+                                <ul>
+                                    <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
+                                    <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Modulo Vinos Artesanales-->
+            <section class="image-cta-sec py-4">
+                <div class="container">
+                    <a href="#" class="cta-recipe-link">
+                        {% if categoria.imagen_banner %}
+                        <img src="{{ categoria.imagen_banner.url }}" alt="{{categoria.nombre}}" class="img-fluid cta-recipe-image-vinos-artesanales">
+                        {% endif %}
+                        {% if categoria.texto_superpuesto %}
+                        <div class="texto-superpuesto">{{ categoria.texto_superpuesto }}</div>
+                        {% endif %}
+                    </a>
+                </div>
+            </section>
+
+            <!-- Texto Vinos Artesanales-->
+            <section class="Vinos-Artesanles-sec mt-4 text-center">
+                <div class="container">
+                    {% if categoria.nombre %}
+                    <h2 class="licores-title mb-4">{{ categoria.nombre }}</h2>
+                    {% endif %}
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-10">
+                            {% if categoria.descripcion_larga %}
+                            <p>
+                                {{ categoria.descripcion_larga }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Productos-->
+            <section class="pt-6 pb-6">
+                <div class="container">
+                    <div class="tittle text-center">
+                        {% if categoria.nombre %}
+                        <h2><span>{{ categoria.nombre }}</span></h2>
+                        {% endif %}
+                    </div>
+                    <!-- Filtros-->
+                    <div class="container mb-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        {% if orden_actual == 'nombre' %}Orden A-Z
+                                        {% elif orden_actual == 'precio_asc' %}Precio: Menor a Mayor
+                                        {% elif orden_actual == 'precio_desc' %}Precio: Mayor a Menor
+                                        {% else %}Ordenar por
+                                        {% endif %}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=categoria.id %}">Por defecto</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='nombre' %}">Orden A-Z</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_asc' %}">Precio: Menor a Mayor<a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_desc' %}">Precio: Mayor a Menor</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        {% for producto in productos %}
+                        <div class="col-md-3">
+                            <div class="product-box">
+                                <div class="pr-img">
+                                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="Vino-Tinto-Dulce-750mL-Maria-Eloisa-solera">
+                                </div>
+                                <div class="pr-icon">
+                                    <ul>
+                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
+                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
+                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
+                                    </ul>
+                                    <div class="pr-text">
+                                        <h3>{{ producto.nombre }}</h3>
+                                        <p>$ {{ producto.precio|floatformat:0}} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categorias-->
+            <section id="Nuestras-Categorías" class="slider-products pt-6 pb-6">
+                <div class="container">
+                    <div class="text-center">
+                        <h6>Nuestras Categorías</h6>
+                        <h2>Explora Nuestra Variedad de Licores</h2>
+                    </div>
+                    <div class="slider-category">
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=2 %}">
+                                <img src="{% static 'tienda/img/poker-botella.png' %}" alt="poker-botella" class="poker-botella">
+                                <div class="cat-text">Cervezas <br> comerciales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=3 %}">
+                                <img src="{% static 'tienda/img/cerveza-artesanal.png' %}" alt="cerveza-artesanal" class="cerveza-artesanal">
+                                <div class="cat-text">Cervezas <br> Artesanales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=4 %}">
+                                <img src="{% static 'tienda/img/vino-comercial.png' %}" alt="vino-comercial" class="vino-comercial">
+                                <div class="cat-text">Vinos <br> Comerciales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=5 %}">
+                                <img src="{% static 'tienda/img/vino-artesanal.png' %}" alt="vino-artesanal" class="vino-artesanal">
+                                <div class="cat-text">Vinos <br> Artesanales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=9 %}">
+                                <img src="{% static 'tienda/img/aguardiente.png' %}" alt="aguardiente" class="aguardiente">
+                                <div class="cat-text">Aguardiente</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=10 %}">
+                                <img src="{% static 'tienda/img/ron.png' %}" alt="ron" class="ron">
+                                <div class="cat-text">Rón</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=11 %}"> 
+                                <img src="{% static 'tienda/img/whisky.png' %}" alt="whisky" class="whisky">
+                                <div class="cat-text">Whisky</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=8 %}">
+                                <img src="{% static 'tienda/img/sangría-1.png' %}" alt="sangría-1" class="sangría-1">
+                                <div class="cat-text">Sangría</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recetas img-->
+            <section class="image-cta-sec py-4">
+                <div class="container">
+                    <a href="#" class="cta-recipe-link">
+                        <img src="{% static 'tienda/img/Recetas.png' %}" alt="Explora la Mixología"
+                            class="img-fluid cta-recipe-image">
+                    </a>
+                </div>
+            </section>         
+
+            <!-- WhatsApp Bubble -->
+            <!-- Reemplaza '1234567890' con tu número de teléfono con el código de país. -->
+            <!-- Reemplaza 'Hola!%20Me%20interesa%20un%20producto%20de%20su%20página.' con el mensaje que quieras. -->
+            <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesa%20un%20producto%20de%20su%20página."
+                class="whatsapp-bubble" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+            <!-- Footer -->
+            <hr>
+            <footer class="text-white pt-5 pb-4">
+                <div class="container text-center text-md-start">
+                    <div class="row text-center text-md-start">
+
+                        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-warning">
+                                <a class="text-decoration-none text-white" href="#">
+                                    <img src="{% static 'tienda/img/logo.png' %}" alt="Vikinga" class="logo">
+                                    Valhalla
+                                </a>
+                            </h5>
+                            <p>Licores y Sabores unicos</p>
+                        </div>
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-white">Enlaces</h5>
+                            <p>
+                                <a href="#Nuestras-Categorías" class="text-white">Categorías</a>
+                            </p>
+                            <p>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=2 %}">Cervezas Comerciales</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=3 %}">Cervezas Artesanles</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=4 %}">Vinos Comerciales</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=5 %}">Vinos Artesanales</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=9 %}">Aguardiente</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=10 %}">Ron</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=11 %}">Whisky</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=8 %}">Sangría</a></li>
+                                    </ul>
+                                </li>
+                            </p>
+                            <p>
+                                <a href="#" class="text-white">Recetas</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-white">Promociones</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-white">Contacto</a>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-white">Contacto</h5>
+                            <p class="text-nowrap">
+                                <i class="fas fa-home me-3"></i> Calle 61 Norte #2FN - 88, Cali, Colombia
+                            </p>
+                            <p class="text-nowrap">
+                                <i class="fas fa-envelope me-3"></i> sebastianarangoquiroga@gmail.com
+                            </p>
+                            <p>
+                                <i class="fas fa-phone me-3"></i> 300 379 9997 - 311 611 2595
+                            </p>
+                            <p class="text-nowrap">
+                                <i class="fab fa-whatsapp fa-lg me-3"></i> +57 300 379 9997 - +57 311 611 2595</a>
+                            </p>
+
+                        </div>
+
+                        <hr class="mb-4 mt-5">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-7 col-lg-8">
+                                <p class="text-center text-md-start">© 2025 Valhalla | Todos los derechos reservados</p>
+                            </div>
+                            <div class="col-md-5 col-lg-4">
+                                <div class="text-center text-md-end">
+                                    <ul class="list-unstyled list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn-floating btn-sm text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn-floating btn-sm text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn-floating btn-sm text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn-floating btn-sm text-white"><i class="fab fa-github fa-lg"></i></a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 text-center">
+                                <a href="#" class="text-white me-3 text-decoration-underline">Términos y Condiciones</a>
+                                <a href="#" class="text-white me-3 text-decoration-underline">Política de Privacidad</a>
+                                <a href="#" class="text-white text-decoration-underline">Política de Cookies</a>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-sm-6 mx-auto text-center">
+                                <p class="m-0 small">El exceso de alcohol es perjudicial para la salud. ley 30 de 1986.
+                                    Prohibase el expendio de bebidas embriagantes a menores de edad y mujeres embarazadas.
+                                    Ley 124 de 1994</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!--script para cargar el header-->
+        <script>
+            $(document).ready(function() {
+                $('header').addClass('loaded');
+                $('#main-site-content').show();
+            });
+        </script>
+
+        <!--script de bootstraps-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!--script de quey-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!--script de slick-->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <!--script de simpleParallax-->
+        <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.6.2/dist/simpleParallax.min.js"></script>
+
+        <!--script local js-->
+        <script src="{% static 'tienda/local.js' %}"></script>
+    </body>
+</html>

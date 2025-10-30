@@ -6,6 +6,9 @@ from django.db import models
 class categoria (models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True)
+    imagen_banner = models.ImageField(upload_to='categorias/', blank=True, null=True)
+    texto_superpuesto = models.CharField(max_length=200, blank=True)
+    descripcion_larga = models.TextField(blank=True)
 
     def __str__(self):
         return self.nombre
@@ -21,6 +24,18 @@ class producto(models.Model):
 
     def __str__(self):
         return f'NOMBRE: {self.nombre} - PRECIO: {self.precio} - CANTIDA DISPONIBLE: {self.stock}'
+    
+#imagenes detalle del producto
+class ImagenProducto(models.Model):
+    producto = models.ForeignKey(producto, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='productos/')
+    orden = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['orden']
+
+    def __str__(self):
+        return f"Imagen de {self.producto.nombre}"
     
 #clientes
 class cliente(models.Model):

@@ -1,0 +1,14 @@
+/* Componentes pagina de inicio */
+
+@import url('components/header.css');
+@import url('components/banner.css');
+@import url('components/categorias.css');
+@import url('components/productos.css');
+@import url('components/promociones.css');
+@import url('components/recetas.css');
+@import url('components/horarios.css');
+@import url('components/burbuja.css');
+@import url('components/parallaxx.css');
+
+/* Estilos pagina productos */
+@import url('components/page-productos.css');
