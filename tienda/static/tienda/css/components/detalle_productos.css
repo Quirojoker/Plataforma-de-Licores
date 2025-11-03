@@ -1,0 +1,135 @@
+/* Detalle de proucto*/
+
+.share-icon {
+    color: var(--primary-color);
+    top: 15px;
+    right: 15px;
+    z-index: 10; 
+    padding: 10px;
+    cursor: pointer;
+    
+}
+
+.icono-compartir {
+    width: 30px;
+    height: 30px;
+}
+
+.quantity-actions.svelte-1jgubmi {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.col.svelte-1jgubmi {
+    flex: 1;
+}
+
+.btn-radius {
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-radius:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 0 20px 5px var(--primary-color);
+    color: var(--primary-color);
+    transition: 0.5s;
+}
+
+.form-control {
+    width: 55px;
+    height: 55px;
+    font-size: 25px;
+    font-weight: 25px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
+}
+
+.form-control:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 0 20px 5px var(--primary-color);
+    color: var(--primary-color);
+    transition: 0.5s;
+}
+
+.scroll-container {
+    transition: transform 0.3s ease-out;
+}
+
+.carousel-item {
+    overflow: hidden;
+}
+
+.carousel-inner img {
+    transition: transform 0.5s ease;
+    max-height: 600px;
+    width: auto;       
+    max-width: 100%;    
+    object-fit: contain;
+}
+
+.carousel-inner img:hover {
+    transform: scale(1.1);
+}
+
+/* Estilos iconos 3D */
+
+.delivery-ciudad-image-1 {
+    text-align: center;
+    max-height: 150px;
+    width: auto;
+    display: block;
+}
+
+.delivery-city-title-1 {
+    margin-top: 0px;
+}
+
+/* Estilos para el Cuadro */
+.schedule-box-1 {
+    background-color: #212529;
+    box-shadow: 0 4px 15px rgb(0, 0, 0) !important;
+    border-radius: 20px;
+    max-width: 350px;
+    min-height: 250px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.schedule-list-1 li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #ced4da;
+}
+
+.schedule-list-1 li:last-child {
+    border-bottom: none;
+}
+
+.texto-justificado {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+
+
+

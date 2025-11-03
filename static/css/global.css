@@ -90,3 +90,9 @@ img {
 .container {
     max-width: 1240px;
 }
+
+*:not(input,textarea) {
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    user-select: none;
+}

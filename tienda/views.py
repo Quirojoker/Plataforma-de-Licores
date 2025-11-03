@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from .models import categoria, producto
 
+#Views inicio.
 def inicio(request):
     return render(request, '1.inicio.html')
 
+#Views categoria productos.
 def categoria_productos(request, categoria_id, orden=None):
     categoria_actual = categoria.objects.get(id=categoria_id)
     productos_categoria = producto.objects.filter(categoria=categoria_actual)
 
-    #ordenamiento
+    #ordenamiento.
     if orden == 'nombre':
         productos_categoria = productos_categoria.order_by ('nombre')
     elif orden == 'precio_asc':
@@ -23,3 +25,8 @@ def categoria_productos(request, categoria_id, orden=None):
         'productos': productos_categoria,
         'orden_actual': orden
     })
+
+#Views detalle productos.
+def detalle_productos(request, producto_id): 
+    producto_actual = producto.objects.get(id=producto_id) 
+    return render(request, '3.detalle_productos.html', {'producto': producto_actual})

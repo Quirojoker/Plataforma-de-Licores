@@ -96,95 +96,168 @@
                 </nav>
             </header>
 
-            <!-- Modulo Vinos Artesanales-->
-            <section class="image-cta-sec py-4">
-                <div class="container">
-                    <a href="#" class="cta-recipe-link">
-                        {% if categoria.imagen_banner %}
-                        <img src="{{ categoria.imagen_banner.url }}" alt="{{categoria.nombre}}" class="img-fluid cta-recipe-image-vinos-artesanales">
-                        {% endif %}
-                        {% if categoria.texto_superpuesto %}
-                        <div class="texto-superpuesto">{{ categoria.texto_superpuesto }}</div>
-                        {% endif %}
-                    </a>
-                </div>
-            </section>
-
-            <!-- Texto Vinos Artesanales-->
-            <section class="Vinos-Artesanles-sec mt-4 text-center">
-                <div class="container">
-                    {% if categoria.nombre %}
-                    <h2 class="licores-title mb-4">{{ categoria.nombre }}</h2>
-                    {% endif %}
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-10">
-                            {% if categoria.descripcion_larga %}
-                            <p>
-                                {{ categoria.descripcion_larga }}
-                            </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Productos-->
-            <section class="pt-6 pb-6">
-                <div class="container">
-                    <div class="tittle text-center">
-                        {% if categoria.nombre %}
-                        <h2><span>{{ categoria.nombre }}</span></h2>
-                        {% endif %}
-                    </div>
-                    <!-- Filtros-->
-                    <div class="container mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        {% if orden_actual == 'nombre' %}Orden A-Z
-                                        {% elif orden_actual == 'precio_asc' %}Precio: Menor a Mayor
-                                        {% elif orden_actual == 'precio_desc' %}Precio: Mayor a Menor
-                                        {% else %}Ordenar por
-                                        {% endif %}
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=categoria.id %}">Por defecto</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='nombre' %}">Orden A-Z</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_asc' %}">Precio: Menor a Mayor<a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_desc' %}">Precio: Mayor a Menor</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        {% for producto in productos %}
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <a href="{% url 'detalle_productos' producto_id=producto.id %}">
-                                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="Vino-Tinto-Dulce-750mL-Maria-Eloisa-solera" class="card-img-top">
-                                    </a>
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>{{ producto.nombre }}</h3>
-                                        <p>$ {{ producto.precio|floatformat:0}} </p>
+            <!-- Detalle de Productos-->
+            <section>
+                <div class="container mb-4">
+                    <div class="row">
+                        <!-- Columna izquierda -->
+                        <div class="col-md-6">
+                            <div class="product-gallery">
+                                <div class="scroll-container">
+                                    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                                        <!-- Icono Compartir-->
+                                         <div class="share-icon position-absolute" onclick="shareProduct()">
+                                            <div class="rounded-circle border border-2 border p-2 d-flex align-items-center justify-content-center" style="border-color: #0077b6 !important;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 56 56" class="icono-compartir">
+                                                    <path fill="currentColor" d="M32.781 52.55c1.688 0 2.883-1.452 3.75-3.702L51.883 8.746c.422-1.078.68-2.039.68-2.836c0-1.523-.961-2.46-2.485-2.46c-.797 0-1.758.234-2.836.656L6.93 19.55c-1.97.75-3.493 1.945-3.493 3.656c0 2.156 1.641 2.883 3.891 3.563l12.68 3.843c1.476.47 2.32.422 3.328-.515l25.71-24.024c.305-.281.657-.234.892-.023c.234.234.257.586-.024.89l-23.93 25.805c-.89.961-.984 1.758-.515 3.328l3.703 12.375c.703 2.367 1.43 4.102 3.61 4.102"></path></svg>                                                
+                                            </div>
+                                         </div>
+                                        <!-- Imágenes del carrusel -->
+                                        <div class="carousel-inner">
+                                            {% if producto.imagen %}
+                                            <div class="carousel-item active">
+                                                <img src="{{ producto.imagen.url }}" class="d-block w-100" alt="{{ producto.nombre }}">
+                                            </div>
+                                            {% endif %}
+                                            {% for imagen in producto.imagenproducto_set.all %}
+                                            <div class="carousel-item {% if forloop.first and not producto.imagen %}active{% endif %}" >
+                                                <img src="{{ imagen.imagen.url }}" class="d-block w-100" style="height: 500px; object-fit: contain;" alt="{{ producto.nombre }}">
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
+                        
+                        <!-- Columna derecha -->
+                        <div class="col-md-6">
+                            <div class="tittle text-center mb-4">
+                                <h2><span>{{ producto.nombre }}</span></h2>
+                            </div>  
+                            <div class="rating-stars mb-4">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>                              
+                                <span class="ms-2" >5/5</span>
+                            </div>   
+                            <div class="d-flex justify-content-between align-items-center mb-5">
+                                <!-- Precio-->
+                                <div class="price-section">
+                                    <h2 class="text-white">$ {{ producto.precio|floatformat:0 }}</h2>
+                                    <h6 class="text-white">Cantidad Disponible: {{ producto.stock }}</h6>
+                                </div>
+                                
+                                <!-- Selector cantidad-->
+                                <div class="col quantity-actions svelte-1jgubmi">
+                                    <button class="btn-radius" onclick="decreaseQuantity()">-</button>
+                                    <input type="text" id="quantity-input" class="form-control text-center" value="1" min="1">
+                                    <button class="btn-radius" onclick="increaseQuantity()">+</button>
+                                </div>
+                            </div>  
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="shop-icon">
+                                <ul>
+                                    <li><a href="#"><i class="fa-solid fa-shield-heart"></i></a></li>
+                                </ul>
+                            </div>
+                            <button class="btn">
+                                <a href="#"></a>Añadir al Caballo
+                            </button>
+                            </div>
+                            <hr>
+                            <div class="container">
+                                <div>
+                                    <div class="texto-justificado">
+                                        <p>
+                                            {{ producto.descripcion }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="container">
+                                <div class="row justify-content-center mb-4">
+                                    <div class="col-auto">
+                                        <div class="schedule-box-1 p-3 rounded-3">
+                                            <div class="col-auto text-center">
+                                                <img src="{% static 'tienda/img/map-location-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
+                                                <h6 class="delivery-city-title-1">Domicilios en Cali</h6>
+                                            </div>
+                                            <ul class="list-unstyled schedule-list-1 small">
+                                                <li>
+                                                    <span class="day fw-bold text-normal d-flex align-items-center">
+                                                        <i class="fa-solid fa-clock fa-2x me-3"></i>
+                                                        <span class="text-start">Compra con seguridad y recibe en 40 minutos</span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mb-4">
+                                    <div class="col-auto">
+                                        <div class="schedule-box-1 p-3 rounded-3">
+                                            <div class="col-auto text-center">
+                                                <img src="{% static 'tienda/img/sign-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
+                                                <h6 class="delivery-city-title-1">Totalmente frió</h6>
+                                            </div>
+                                            <ul class="list-unstyled schedule-list-1 small">
+                                                <li>
+                                                    <span class="day fw-bold text-normal d-flex align-items-center">
+                                                        <i class="fa-solid fa-igloo fa-2x me-3"></i>
+                                                        <span class="text-start">Tus bebidas llegan perfectamente frías</span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mb-4">
+                                    <div class="col-auto">
+                                        <div class="schedule-box-1 p-3 rounded-3">
+                                            <div class="col-auto text-center">
+                                                <img src="{% static 'tienda/img/traffic-fine-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
+                                                <h6 class="delivery-city-title-1">Producto 100% legal</h6>
+                                            </div>
+                                            <ul class="list-unstyled schedule-list-1 small">
+                                                <li>
+                                                    <span class="day fw-bold text-normal d-flex align-items-center">
+                                                        <i class="fa-solid fa-scale-balanced fa-2x me-3"></i>
+                                                        <span class="text-start">Comprar lo que es seguro no tiene precio</span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-auto">
+                                        <div class="schedule-box-1 p-3 rounded-3">
+                                            <div class="col-auto text-center">
+                                                <img src="{% static 'tienda/img/coin-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
+                                                <h6 class="delivery-city-title-1">Paga como quieras</h6>
+                                            </div>
+                                            <ul class="list-unstyled schedule-list-1 small">
+                                                <li>
+                                                    <span class="day fw-bold text-normal d-flex align-items-center">
+                                                        <i class="fa-solid fa-credit-card fa-2x me-3"></i>
+                                                        <span class="text-start">Todos los medios de pago, incluido contra entrega</span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            
             <!-- Categorias-->
             <section id="Nuestras-Categorías" class="slider-products pt-6 pb-6">
                 <div class="container">

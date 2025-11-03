@@ -8,6 +8,13 @@
         <title>Mi Licorera</title>
         <meta name="description" content="Compra cervezas, vinos y licores online, con entrega rápida en tu ciudad.">
 
+        <!-- Tags OG para compartir-->
+        <meta property="og:title" content="Valhalla - Licores Premium">
+        <meta property="og:description" content="Compra cervezas, vinos y licores online">
+        <meta property="og:image" content="{% static 'tienda/img/favicon-32x32.png' %}">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:type" content="website">
+
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="{% static 'tienda/img/favicon-32x32.png' %}">
 
@@ -624,8 +631,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-auto text-center">
-                            <img src="{% static 'tienda/img/moto.png' %}" alt="Moto de Reparto de Licores"
-                                class="img-fluid delivery-moto-image">
+                            <img src="{% static 'tienda/img/moto.png' %}" alt="Moto de Reparto de Licores" class="img-fluid delivery-moto-image">
                             <h2 class="delivery-city-title">Horarios Cali</h2>
                         </div>
                         <div class="col-auto">
@@ -791,11 +797,11 @@
             </footer>
         </div>
 
-        <!--script de bootstraps-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
         <!--script de quey-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!--script de bootstraps-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
         <!--script de slick-->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
