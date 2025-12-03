@@ -41,6 +41,13 @@
     </head>
 
     <body>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
         <div id="main-site-content">
             <!-- Barra de navegación-->
             <header class="header loaded">
@@ -82,13 +89,18 @@
                                     <a class="nav-link text-white" href="#">Contacto</a>
                                 </li>
                             </ul>
-                            <div class="search-icon">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
                             <div class="shop-icon">
                                 <ul>
                                     <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                    <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
+                                    <li>
+                                        <a href="{% url 'ver_carrito' %}" class="position-relative">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" 
+                                                {% if not request.session.cart_items_count or request.session.cart_items_count == 0 %}style="display: none;"{% endif %}>
+                                                {{ request.session.cart_items_count|default:0 }}
+                                            </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -96,8 +108,26 @@
                 </nav>
             </header>
 
+            <!-- Barra de busqueda-->
+            <section class="search-section py-3">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <form action="{% url 'buscar' %}" method="get" class="d-flex">
+                                <input type="text" name="q" placeholder="¿Qué estás buscando?" class="form-control-1 me-2 search-input" value="{{ request.GET.q }}">
+                                <button type="submit" class="btn search-btn">
+                                    <div class="search-icon-1">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Detalle de Productos-->
-            <section>
+            <section id="seccion-producto-detalle">
                 <div class="container mb-4">
                     <div class="row">
                         <!-- Columna izquierda -->
@@ -149,13 +179,6 @@
                                     <h2 class="text-white">$ {{ producto.precio|floatformat:0 }}</h2>
                                     <h6 class="text-white">Cantidad Disponible: {{ producto.stock }}</h6>
                                 </div>
-                                
-                                <!-- Selector cantidad-->
-                                <div class="col quantity-actions svelte-1jgubmi">
-                                    <button class="btn-radius" onclick="decreaseQuantity()">-</button>
-                                    <input type="text" id="quantity-input" class="form-control text-center" value="1" min="1">
-                                    <button class="btn-radius" onclick="increaseQuantity()">+</button>
-                                </div>
                             </div>  
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div class="shop-icon">
@@ -163,9 +186,7 @@
                                     <li><a href="#"><i class="fa-solid fa-shield-heart"></i></a></li>
                                 </ul>
                             </div>
-                            <button class="btn">
-                                <a href="#"></a>Añadir al Caballo
-                            </button>
+                                <a class="btn" href="{% url 'agregar_al_carrito' producto.id %}">Añadir al Carrito</a>
                             </div>
                             <hr>
                             <div class="container">

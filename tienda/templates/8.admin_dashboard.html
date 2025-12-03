@@ -41,6 +41,14 @@
     </head>
 
     <body>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+
         <div id="main-site-content">
             <!-- Barra de navegación-->
             <header class="header loaded">
@@ -82,209 +90,75 @@
                                     <a class="nav-link text-white" href="#">Contacto</a>
                                 </li>
                             </ul>
-                            <div class="shop-icon">
-                                <ul>
-                                    <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                    <li>
-                                        <a href="{% url 'ver_carrito' %}" class="position-relative">
-                                            <i class="fa-solid fa-cart-shopping"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" 
-                                                {% if not request.session.cart_items_count or request.session.cart_items_count == 0 %}style="display: none;"{% endif %}>
-                                                {{ request.session.cart_items_count|default:0 }}
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </nav>
             </header>
 
-            <!-- Barra de busqueda-->
-            <section class="search-section py-3">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <form action="{% url 'buscar' %}" method="get" class="d-flex">
-                                <input type="text" name="q" placeholder="¿Qué estás buscando?" class="form-control-1 me-2 search-input" value="{{ request.GET.q }}">
-                                <button type="submit" class="btn search-btn">
-                                    <div class="search-icon-1">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </div>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <h1 class="mb-4 mt-4" style="text-align: center;">
+                Pedidos Valhalla Administrador
+            </h1>
 
-            <!-- Modulo Vinos Artesanales-->
-            <section class="image-cta-sec py-4">
-                <div class="container">
-                    <a href="#" class="cta-recipe-link">
-                        {% if categoria.imagen_banner %}
-                        <img src="{{ categoria.imagen_banner.url }}" alt="{{categoria.nombre}}" class="img-fluid cta-recipe-image-vinos-artesanales">
-                        {% endif %}
-                        {% if categoria.texto_superpuesto %}
-                        <div class="texto-superpuesto">{{ categoria.texto_superpuesto }}</div>
-                        {% endif %}
-                    </a>
-                </div>
-            </section>
-
-            <!-- Texto Vinos Artesanales-->
-            <section class="Vinos-Artesanles-sec mt-4 text-center">
-                <div class="container">
-                    {% if categoria.nombre %}
-                    <h2 class="licores-title mb-4">{{ categoria.nombre }}</h2>
-                    {% endif %}
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-10">
-                            {% if categoria.descripcion_larga %}
-                            <p>
-                                {{ categoria.descripcion_larga }}
-                            </p>
+            <div class="table-responsive" >
+                <table class="mb-4 mt-4 table table-striped table-bordered table-dark schedule-box-2 p-4 rounded-3 text-center align-middle w-auto">
+                    <tr>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>ID</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Cliente</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Telefono del Cliente</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Direccion</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Zona de Entrega</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Intrucciones de entrega</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Fecha de Entrega</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Hora de entrega</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Metodo de pago</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Productos</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Total</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Estado de pago</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Domiciliario</strong></th>
+                        <th class="mt-4" style="color: var(--primary-color);"><strong>Estado</strong></th>
+                    </tr>
+                    {% for pedido in pedidos %}
+                    <tr>
+                        <td>{{ pedido.id }}</td>
+                        <td>{{ pedido.cliente.nombre }}</td>
+                        <td>{{ pedido.cliente.telefono}} </td>
+                        <td>{{ pedido.direccion_entrega }}</td>
+                        <td>{{ pedido.zona_entrega }}</td>
+                        <td>
+                            {% if pedido.instrucciones_entrega %}
+                                {{ pedido.instrucciones_entrega }}
+                            {% else %}
+                                N/A
                             {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Productos-->
-            <section class="pt-6 pb-6">
-                <div class="container">
-                    <div class="tittle text-center">
-                        {% if categoria.nombre %}
-                        <h2><span>{{ categoria.nombre }}</span></h2>
-                        {% endif %}
-                    </div>
-                    <!-- Filtros-->
-                    <div class="container mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        {% if orden_actual == 'nombre' %}Orden A-Z
-                                        {% elif orden_actual == 'precio_asc' %}Precio: Menor a Mayor
-                                        {% elif orden_actual == 'precio_desc' %}Precio: Mayor a Menor
-                                        {% else %}Ordenar por
-                                        {% endif %}
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=categoria.id %}">Por defecto</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='nombre' %}">Orden A-Z</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_asc' %}">Precio: Menor a Mayor<a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_desc' %}">Precio: Mayor a Menor</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        {% for producto in productos %}
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <a href="{% url 'detalle_productos' producto_id=producto.id %}">
-                                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="Vino-Tinto-Dulce-750mL-Maria-Eloisa-solera" class="card-img-top">
-                                    </a>
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>{{ producto.nombre }}</h3>
-                                        <p>$ {{ producto.precio|floatformat:0}} </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
-
-            <!-- Categorias-->
-            <section id="Nuestras-Categorías" class="slider-products pt-6 pb-6">
-                <div class="container">
-                    <div class="text-center">
-                        <h6>Nuestras Categorías</h6>
-                        <h2>Explora Nuestra Variedad de Licores</h2>
-                    </div>
-                    <div class="slider-category">
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=2 %}">
-                                <img src="{% static 'tienda/img/poker-botella.png' %}" alt="poker-botella" class="poker-botella">
-                                <div class="cat-text">Cervezas <br> comerciales</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=3 %}">
-                                <img src="{% static 'tienda/img/cerveza-artesanal.png' %}" alt="cerveza-artesanal" class="cerveza-artesanal">
-                                <div class="cat-text">Cervezas <br> Artesanales</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=4 %}">
-                                <img src="{% static 'tienda/img/vino-comercial.png' %}" alt="vino-comercial" class="vino-comercial">
-                                <div class="cat-text">Vinos <br> Comerciales</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=5 %}">
-                                <img src="{% static 'tienda/img/vino-artesanal.png' %}" alt="vino-artesanal" class="vino-artesanal">
-                                <div class="cat-text">Vinos <br> Artesanales</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=9 %}">
-                                <img src="{% static 'tienda/img/aguardiente.png' %}" alt="aguardiente" class="aguardiente">
-                                <div class="cat-text">Aguardiente</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=10 %}">
-                                <img src="{% static 'tienda/img/ron.png' %}" alt="ron" class="ron">
-                                <div class="cat-text">Rón</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=11 %}"> 
-                                <img src="{% static 'tienda/img/whisky.png' %}" alt="whisky" class="whisky">
-                                <div class="cat-text">Whisky</div>
-                            </a>
-                        </div>
-                        <div class="slides-cat">
-                            <a href="{% url 'categoria_productos' categoria_id=8 %}">
-                                <img src="{% static 'tienda/img/sangría-1.png' %}" alt="sangría-1" class="sangría-1">
-                                <div class="cat-text">Sangría</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Recetas img-->
-            <section class="image-cta-sec py-4">
-                <div class="container">
-                    <a href="#" class="cta-recipe-link">
-                        <img src="{% static 'tienda/img/Recetas.png' %}" alt="Explora la Mixología"
-                            class="img-fluid cta-recipe-image">
-                    </a>
-                </div>
-            </section>         
-
-            <!-- WhatsApp Bubble -->
-            <!-- Reemplaza '1234567890' con tu número de teléfono con el código de país. -->
-            <!-- Reemplaza 'Hola!%20Me%20interesa%20un%20producto%20de%20su%20página.' con el mensaje que quieras. -->
-            <a href="https://wa.me/1234567890?text=Hola!%20Me%20interesa%20un%20producto%20de%20su%20página."
-                class="whatsapp-bubble" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+                        </td>
+                        <td>{{ pedido.fecha_entrega }}</td>
+                        <td>{{ pedido.hora_entrega }}</td>
+                        <td>
+                            {{ pedido.metodo_pago }}
+                        </td>
+                        <td>
+                            {% for detalle in pedido.detallepedido_set.all %}
+                                {{ detalle.producto.nombre }} (x{{ detalle.cantidad }})<br>
+                            {% endfor %}
+                        </td>
+                        <td>${{ pedido.total }}</td>
+                        <td>{{ pedido.estado_pago }}</td>
+                        <td>
+                            {% if pedido.domiciliario %}
+                                {{ pedido.domiciliario }}
+                            {% else %}
+                                <form method="post" action="{% url 'asignar_domiciliario' pedido.id %}">
+                                    {% csrf_token %}
+                                    <input type="text" name="domiciliario" placeholder="Nombre domiciliario" class="form-control-sm mb-3">
+                                    <button type="submit" class="btn btn-sm">Asignar</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                        <td>{{ pedido.estado }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
 
             <!-- Footer -->
             <hr>

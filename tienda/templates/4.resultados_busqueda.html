@@ -119,33 +119,34 @@
                 </div>
             </section>
 
-            <!-- Modulo Vinos Artesanales-->
+            <!-- Resultados de Búsqueda-->
             <section class="image-cta-sec py-4">
-                <div class="container">
-                    <a href="#" class="cta-recipe-link">
-                        {% if categoria.imagen_banner %}
-                        <img src="{{ categoria.imagen_banner.url }}" alt="{{categoria.nombre}}" class="img-fluid cta-recipe-image-vinos-artesanales">
-                        {% endif %}
-                        {% if categoria.texto_superpuesto %}
-                        <div class="texto-superpuesto">{{ categoria.texto_superpuesto }}</div>
-                        {% endif %}
-                    </a>
+                <div class="container text-center">
+                    <h2 class="text">Resultados de Búsqueda</h2>
+                    {% if query %}
+                    <p class="text">Encontramos <strong>{{ productos.count }}</strong> producto(s) para "<strong>{{ query }}</strong>"</p>
+                    {% endif %}
                 </div>
             </section>
 
-            <!-- Texto Vinos Artesanales-->
             <section class="Vinos-Artesanles-sec mt-4 text-center">
                 <div class="container">
-                    {% if categoria.nombre %}
-                    <h2 class="licores-title mb-4">{{ categoria.nombre }}</h2>
-                    {% endif %}
+                    <h2 class="licores-title mb-4">
+                        {% if query %}
+                        Resultados para "{{ query }}"
+                        {% else %}
+                        Busca tus productos favoritos
+                        {% endif %}
+                    </h2>
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-10">
-                            {% if categoria.descripcion_larga %}
                             <p>
-                                {{ categoria.descripcion_larga }}
+                                {% if query %}
+                                Encuentra exactamente lo que buscas entre nuestra selección premium
+                                {% else %}
+                                Utiliza la barra de búsqueda para encontrar vinos, cervezas y licores
+                                {% endif %}
                             </p>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -159,28 +160,17 @@
                         <h2><span>{{ categoria.nombre }}</span></h2>
                         {% endif %}
                     </div>
-                    <!-- Filtros-->
+                    
+                    <!-- Mensaje cuando no hay resultados -->
+                    {% if not productos and query %}
                     <div class="container mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        {% if orden_actual == 'nombre' %}Orden A-Z
-                                        {% elif orden_actual == 'precio_asc' %}Precio: Menor a Mayor
-                                        {% elif orden_actual == 'precio_desc' %}Precio: Mayor a Menor
-                                        {% else %}Ordenar por
-                                        {% endif %}
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=categoria.id %}">Por defecto</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='nombre' %}">Orden A-Z</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_asc' %}">Precio: Menor a Mayor<a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_desc' %}">Precio: Mayor a Menor</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="text-center">
+                            <h5>No se encontraron productos</h5>
+                            <p>No hay resultados para "<strong>{{ query }}</strong>"</p>
+                            <p>Intenta con otras palabras como: <em>cerveza, vino, licor, poker, etc.</em></p>
                         </div>
                     </div>
+                    {% endif %}
                     <div class="row mt-5">
                         {% for producto in productos %}
                         <div class="col-md-3">

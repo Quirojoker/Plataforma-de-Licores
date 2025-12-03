@@ -1,5 +1,6 @@
 /* Componentes pagina de inicio */
 @import url('components/header.css');
+@import url('components/busqueda.css');
 @import url('components/banner.css');
 @import url('components/categorias.css');
 @import url('components/productos.css');
@@ -14,3 +15,9 @@
 
 /* Estilos pagina detalle Productos*/
 @import url('components/detalle_productos.css');
+
+/* Estilos pagina carrito de compras*/
+@import url('components/carro.css');
+
+/* Estilos pagina segumiento*/
+@import url('components/seguimiento.css');

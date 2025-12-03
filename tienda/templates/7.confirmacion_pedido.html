@@ -41,6 +41,14 @@
     </head>
 
     <body>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+
         <div id="main-site-content">
             <!-- Barra de navegación-->
             <header class="header loaded">
@@ -82,128 +90,53 @@
                                     <a class="nav-link text-white" href="#">Contacto</a>
                                 </li>
                             </ul>
-                            <div class="shop-icon">
-                                <ul>
-                                    <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                    <li>
-                                        <a href="{% url 'ver_carrito' %}" class="position-relative">
-                                            <i class="fa-solid fa-cart-shopping"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" 
-                                                {% if not request.session.cart_items_count or request.session.cart_items_count == 0 %}style="display: none;"{% endif %}>
-                                                {{ request.session.cart_items_count|default:0 }}
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </nav>
             </header>
 
-            <!-- Barra de busqueda-->
-            <section class="search-section py-3">
+            <!-- confirmacion_pedido.html -->
+            <section class="mt-5 pt-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <form action="{% url 'buscar' %}" method="get" class="d-flex">
-                                <input type="text" name="q" placeholder="¿Qué estás buscando?" class="form-control-1 me-2 search-input" value="{{ request.GET.q }}">
-                                <button type="submit" class="btn search-btn">
-                                    <div class="search-icon-1">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </div>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Modulo Vinos Artesanales-->
-            <section class="image-cta-sec py-4">
-                <div class="container">
-                    <a href="#" class="cta-recipe-link">
-                        {% if categoria.imagen_banner %}
-                        <img src="{{ categoria.imagen_banner.url }}" alt="{{categoria.nombre}}" class="img-fluid cta-recipe-image-vinos-artesanales">
-                        {% endif %}
-                        {% if categoria.texto_superpuesto %}
-                        <div class="texto-superpuesto">{{ categoria.texto_superpuesto }}</div>
-                        {% endif %}
-                    </a>
-                </div>
-            </section>
-
-            <!-- Texto Vinos Artesanales-->
-            <section class="Vinos-Artesanles-sec mt-4 text-center">
-                <div class="container">
-                    {% if categoria.nombre %}
-                    <h2 class="licores-title mb-4">{{ categoria.nombre }}</h2>
-                    {% endif %}
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-10">
-                            {% if categoria.descripcion_larga %}
-                            <p>
-                                {{ categoria.descripcion_larga }}
-                            </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Productos-->
-            <section class="pt-6 pb-6">
-                <div class="container">
-                    <div class="tittle text-center">
-                        {% if categoria.nombre %}
-                        <h2><span>{{ categoria.nombre }}</span></h2>
-                        {% endif %}
-                    </div>
-                    <!-- Filtros-->
-                    <div class="container mb-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                        {% if orden_actual == 'nombre' %}Orden A-Z
-                                        {% elif orden_actual == 'precio_asc' %}Precio: Menor a Mayor
-                                        {% elif orden_actual == 'precio_desc' %}Precio: Mayor a Menor
-                                        {% else %}Ordenar por
-                                        {% endif %}
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos' categoria_id=categoria.id %}">Por defecto</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='nombre' %}">Orden A-Z</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_asc' %}">Precio: Menor a Mayor<a></li>
-                                        <li><a class="dropdown-item" href="{% url 'categoria_productos_orden' categoria_id=categoria.id orden='precio_desc' %}">Precio: Mayor a Menor</a></li>
-                                    </ul>
+                        <div class="col-lg-6">
+                            <div class="schedule-box-2 p-4 rounded-3 text-center">
+                                <div class="mb-4">
+                                    <h1>✅</h1>
+                                    <h3>¡Pedido Confirmado!</h3>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        {% for producto in productos %}
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <a href="{% url 'detalle_productos' producto_id=producto.id %}">
-                                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="Vino-Tinto-Dulce-750mL-Maria-Eloisa-solera" class="card-img-top">
+                                
+                                <div class="mb-4">
+                                    <p class="mb-2"><strong>Número de pedido:</strong> #{{ pedido.id }}</p>
+                                    <p class="mb-2"><strong>Código de seguimiento:</strong> {{ pedido.codigo_seguimiento }}</p>
+                                    <p class="mb-2" style="color: var(--primary-color);"><strong>Total: ${{ pedido.total|floatformat:0 }}</strong></p>
+                                    <p class="mb-2"><strong>Método de pago:</strong> {{ pedido.get_metodo_pago_display }}</p>
+                                    
+                                    {% if pedido.tipo_entrega == 'express' %}
+                                    <p class="mb-2"><strong>Entrega:</strong> Hoy mismo (40-60 minutos)</p>
+                                    {% else %}
+                                    <p class="mb-2"><strong>Entrega programada:</strong> {{ pedido.fecha_entrega }} a las {{ pedido.hora_entrega }}</p>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="alert alert-info mb-4">
+                                    <small>
+                                        📱 <strong>Guarda tu código de seguimiento:</strong> {{ pedido.codigo_seguimiento }}<br>
+                                        Te enviaremos actualizaciones por WhatsApp.
+                                    </small>
+                                </div>
+
+                                <div class="mb-4">
+                                    <a href="{% url 'seguimiento_pedido' pedido.id %}" class="btn">
+                                        Seguir mi pedido en tiempo real
                                     </a>
                                 </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>{{ producto.nombre }}</h3>
-                                        <p>$ {{ producto.precio|floatformat:0}} </p>
-                                    </div>
-                                </div>
+                                
+                                <a href="{% url 'inicio' %}" class="btn">
+                                    Seguir Comprando
+                                </a>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
             </section>
