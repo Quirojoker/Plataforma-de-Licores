@@ -6,7 +6,9 @@ from django.db.models import Q, Sum
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.utils.timezone import localtime
-            
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.views import LoginView
+from django.views.decorators.csrf import csrf_protect
 
 #Views inicio.
 def inicio(request):
@@ -323,13 +325,25 @@ def confirmacion_pedido(request, pedido_id):
     
     return render(request, '7.confirmacion_pedido.html', context)
 
+# Views para verificar grupos de administrador
+def es_administrador(user):
+    return user.groups.filter(name='administrador').exists()
+
 # Views de dashboard/admin
+@login_required
+@user_passes_test(es_administrador)
 def dashboard_admin(request):
     pedidos = pedido.objects.all().order_by('-fecha')
     return render(request, '8.admin_dashboard.html', {'pedidos': pedidos})
 
 
+# Views para verificar grupos de domiciliario
+def es_domiciliario(user):
+    return user.groups.filter(name='domiciliarios').exists()
+
 # Views de dashboard/domiciliario
+@login_required
+@user_passes_test(es_domiciliario)
 def dashboard_domiciliario(request):
     pedidos = pedido.objects.all().order_by('-fecha')
     domiciliarios = pedido.objects.exclude(domiciliario__isnull=True).values_list('domiciliario', flat=True).distinct()
@@ -394,10 +408,8 @@ def marcar_en_camino(request, pedido_id):
     return redirect('domiciliario_dashboard')
     
 
-# Segumiento de Pedido
+# Views Segumiento de Pedido
 def seguimiento_pedido(request, pedido_id):
     pedido_obj = get_object_or_404(pedido, id=pedido_id)
     return render(request, '10.seguimiento_pedido.html', {'pedido': pedido_obj})
-    
-
 

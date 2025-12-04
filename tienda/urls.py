@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
@@ -21,5 +22,7 @@ urlpatterns = [
     path('domiciliario-dashboard/', views.dashboard_domiciliario, name='domiciliario_dashboard'),
     path('seguimiento/<int:pedido_id>/', views.seguimiento_pedido, name='seguimiento_pedido'),
     path('marcar-en-camino/<int:pedido_id>/', views.marcar_en_camino, name='marcar_en_camino'),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='11.login.html',redirect_authenticated_user=True), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 

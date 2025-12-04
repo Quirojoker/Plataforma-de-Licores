@@ -95,6 +95,24 @@
                 </nav>
             </header>
 
+            <div style="text-align: right; padding: 10px; margin-bottom: 20px;" class="mb-4 mt-4">
+                Domiciliario: 
+                <strong style="color: var(--primary-color);">
+                    {{ user.username }}
+                </strong> | 
+
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            </div>
+
+            <div class="container">
+                <h3>Dashboard Domiciliario</h3>
+            </div>
+
             <h1 class="mb-4 mt-4" style="text-align: center;">
                 Pedidos Valhalla Domicilios
             </h1>

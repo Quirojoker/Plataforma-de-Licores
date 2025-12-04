@@ -95,88 +95,29 @@
                 </nav>
             </header>
 
-            <div style="text-align: right; padding: 10px; margin-bottom: 20px;" class="mb-4 mt-4">
-                Domiciliario: 
-                <strong style="color: var(--primary-color);">
-                    {{ user.username }}
-                </strong> | 
-                
-                <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn">
-                        Cerrar Sesión
-                    </button>
-                </form>
-            </div>
-
-            <div class="container">
-                <h3>Dashboard Administrador</h3>
-            </div>
-
-            <h1 class="mb-4 mt-4" style="text-align: center;">
-                Pedidos Valhalla Administrador
-            </h1>
-
-            <div class="table-responsive" >
-                <table class="mb-4 mt-4 table table-striped table-bordered table-dark schedule-box-2 p-4 rounded-3 text-center align-middle w-auto">
-                    <tr>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>ID</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Cliente</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Telefono del Cliente</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Direccion</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Zona de Entrega</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Intrucciones de entrega</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Fecha de Entrega</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Hora de entrega</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Metodo de pago</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Productos</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Total</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Estado de pago</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Domiciliario</strong></th>
-                        <th class="mt-4" style="color: var(--primary-color);"><strong>Estado</strong></th>
-                    </tr>
-                    {% for pedido in pedidos %}
-                    <tr>
-                        <td>{{ pedido.id }}</td>
-                        <td>{{ pedido.cliente.nombre }}</td>
-                        <td>{{ pedido.cliente.telefono}} </td>
-                        <td>{{ pedido.direccion_entrega }}</td>
-                        <td>{{ pedido.zona_entrega }}</td>
-                        <td>
-                            {% if pedido.instrucciones_entrega %}
-                                {{ pedido.instrucciones_entrega }}
-                            {% else %}
-                                N/A
-                            {% endif %}
-                        </td>
-                        <td>{{ pedido.fecha_entrega }}</td>
-                        <td>{{ pedido.hora_entrega }}</td>
-                        <td>
-                            {{ pedido.metodo_pago }}
-                        </td>
-                        <td>
-                            {% for detalle in pedido.detallepedido_set.all %}
-                                {{ detalle.producto.nombre }} (x{{ detalle.cantidad }})<br>
-                            {% endfor %}
-                        </td>
-                        <td>${{ pedido.total }}</td>
-                        <td>{{ pedido.estado_pago }}</td>
-                        <td>
-                            {% if pedido.domiciliario %}
-                                {{ pedido.domiciliario }}
-                            {% else %}
-                                <form method="post" action="{% url 'asignar_domiciliario' pedido.id %}">
+            <section class="mt-5 pt-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4">
+                            <div class="schedule-box-2 p-4 rounded-3 text-center">
+                                <h3 class="mb-4">
+                                    🔐 Acceso al Sistema
+                                </h3>
+                                <form method="post">
                                     {% csrf_token %}
-                                    <input type="text" name="domiciliario" placeholder="Nombre domiciliario" class="form-control-sm mb-3">
-                                    <button type="submit" class="btn btn-sm">Asignar</button>
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn w-100 mb-3">Entrar</button>
+                                    <div class="mt-3">
+                                        <small>
+                                            ¿Eres domiciliario? Pide tus credenciales al administrador.
+                                        </small>
+                                    </div>
                                 </form>
-                            {% endif %}
-                        </td>
-                        <td>{{ pedido.estado }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Footer -->
             <hr>
