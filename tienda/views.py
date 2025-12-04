@@ -7,8 +7,6 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 from django.utils.timezone import localtime
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.views import LoginView
-from django.views.decorators.csrf import csrf_protect
 
 #Views inicio.
 def inicio(request):
