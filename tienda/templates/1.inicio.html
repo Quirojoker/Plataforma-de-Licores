@@ -348,10 +348,13 @@
                         <h2><span>Vinos Artesanales</span></h2>
                     </div>
                     <div class="row mt-5">
+                        {% for producto in productos %}
                         <div class="col-md-3">
                             <div class="product-box">
                                 <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
+                                    <a href="{% url 'detalle_productos' producto_id=producto.id %}">
+                                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="Vino-Tinto-Dulce-750mL-Maria-Eloisa-solera" class="card-img-top">
+                                    </a>
                                 </div>
                                 <div class="pr-icon">
                                     <ul>
@@ -360,138 +363,13 @@
                                         <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
                                     </ul>
                                     <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <p>$ 42.000</p>
+                                        <h3>{{ producto.nombre }}</h3>
+                                        <p>$ {{ producto.precio|floatformat:0}} </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Maracuya-Dulce-750mL.png' %}" alt="Vino-de-Maracuya-Dulce-750mL" class="Vino-de-Maracuya-Dulce-750mL">
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino de Maracuya Dulce 750mL</h3>
-                                        <p>$ 35.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-Rosado-Semiseco-750mL-Maria-Eloisa-Solera.png' %}" alt="Vino-Rosado-Semiseco-750mL-Maria-Eloisa-Solera" class="Vino-Rosado-Semiseco-750mL-Maria-Eloisa-Solera">
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino Rosado Semiseco 750 mL</h3>
-                                        <p>$ 35.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-Tinto-seco-750mL-Maria-Eloisa-Solera.png' %}" alt="Vino-Tinto-seco-750mL-Maria-Eloisa-Solera" class="Vino-Tinto-seco-750mL-Maria-Eloisa-Solera">
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino Tinto Seco 750mL</h3>
-                                        <p>$ 35.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="https://placehold.co/378x387/transparent/000?text=banner+licores%20378x387" alt="">
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino Tinto</h3>
-                                        <p>$45.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="https://placehold.co/378x387/transparent/000?text=banner+licores%20378x387" alt="">
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino Tinto</h3>
-                                        <p>$45.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="https://placehold.co/378x387/transparent/000?text=banner+licores%20378x387" alt="">
-                                </div>
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino Tinto</h3>
-                                        <p>$45.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="product-box">
-                                <div class="pr-img">
-                                    <img src="https://placehold.co/378x387/transparent/000?text=banner+licores%20378x387" alt="">
-                                </div> 
-                                <div class="pr-icon">
-                                    <ul>
-                                        <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                        <li><a href=""><i class="fa-solid fa-horse"></i></a></li>
-                                        <li><a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                    </ul>
-                                    <div class="pr-text">
-                                        <h3>Vino Tinto</h3>
-                                        <p>$45.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </section>

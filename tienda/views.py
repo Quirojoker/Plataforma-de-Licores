@@ -10,7 +10,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 #Views inicio.
 def inicio(request):
-    return render(request, '1.inicio.html')
+    productos_vinos_artesanales = producto.objects.filter(
+        categoria__id=5,
+    ).order_by('-id')[:8] 
+
+    return render(request, '1.inicio.html', {
+        'productos': productos_vinos_artesanales,
+    })
 
 #Views categoria productos.
 def categoria_productos(request, categoria_id, orden=None):
