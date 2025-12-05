@@ -7,16 +7,24 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 from django.utils.timezone import localtime
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.cache import cache
+import random
 
 #Views inicio.
 def inicio(request):
-    productos_vinos_artesanales = producto.objects.filter(
-        categoria__id=5,
-    ).order_by('-id')[:8] 
-
-    return render(request, '1.inicio.html', {
-        'productos': productos_vinos_artesanales,
-    })
+    cache_key = 'productos_aleatorios_home'
+    productos = cache.get(cache_key)
+    
+    if not productos:
+        todos_productos_ids = list(producto.objects.values_list('id', flat=True))
+        if len(todos_productos_ids) >= 8:
+            ids_aleatorios = random.sample(todos_productos_ids, 8)
+            productos = producto.objects.filter(id__in=ids_aleatorios)
+            cache.set(cache_key, productos, 3600)
+        else:
+            productos = producto.objects.filter(stock__gt=0)[:6]
+    
+    return render(request, '1.inicio.html', {'productos': productos})
 
 #Views categoria productos.
 def categoria_productos(request, categoria_id, orden=None):
