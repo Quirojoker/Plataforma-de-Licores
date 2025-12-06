@@ -24,7 +24,25 @@ def inicio(request):
         else:
             productos = producto.objects.filter(stock__gt=0)[:6]
     
-    return render(request, '1.inicio.html', {'productos': productos})
+    cache_key_promos = 'productos_promocion_home'
+    productos_promocion = cache.get(cache_key_promos)
+    
+    if not productos_promocion:
+        promociones_ids = list(producto.objects.filter(
+            en_promocion=True
+        ).values_list('id', flat=True))
+        
+        if promociones_ids:
+            ids_promos = random.sample(promociones_ids, min(8, len(promociones_ids)))
+            productos_promocion = producto.objects.filter(id__in=ids_promos)
+            cache.set(cache_key_promos, productos_promocion, 3600)
+        else:
+            productos_promocion = producto.objects.none()
+
+    return render(request, '1.inicio.html', {
+        'productos': productos,
+        'productos_promocion': productos_promocion
+        })
 
 #Views categoria productos.
 def categoria_productos(request, categoria_id, orden=None):

@@ -92,7 +92,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="#">Promociones</a>
+                                    <a class="nav-link text-white" href="#Nuestras-Promociones">Promociones</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="#">Recetas</a>
@@ -370,126 +370,38 @@
             </section>
 
             <!-- Promociones-->
-            <section class="slider-products pt-6 pb-6">
+            <section class="slider-products pt-6 pb-6" id="Nuestras-Promociones">
                 <div class="container">
                     <div class="tittle text-center">
                         <h6 class="descuento">Descuentos en Licores</h6>
                         <h2 class="especiales"><span>¿Buscas precios realmente especiales?</span></h2>
                     </div>
                     <div class="slider-category">
-                        <div class="slides-cat">
+                        {% for producto in productos_promocion %}
+                        <div>
                             <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
+                                <div class="pr-img-1 d-flex align-items-center justify-content-center">
+                                    <a href="{% url 'detalle_productos' producto_id=producto.id %}">
+                                        {% if producto.imagen %}
+                                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid" style="max-height: 200px; width: auto;">
+                                        {% else %}
+                                        <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
+                                        {% endif %}
+                                    </a>
                                 </div>
                                 <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
+                                    <div class="pr-text p-3 text-center">
+                                        <h3>{{ producto.nombre }}</h3>
+                                        {% if producto.precio_promocional %}
+                                        <del>$ {{ producto.precio_excesivo|floatformat:0 }}</del>
+                                        <p>$ {{ producto.precio_promocional|floatformat:0 }}</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/sangría-1.png' %}" alt="sangría-1-1L" class="sangría-1-1L">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Sangría Cava Solera <br>1L</h3>
-                                        <del>$ 60.000</del>
-                                        <p>$ 45.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slides-cat">
-                            <div class="product-box-1">
-                                <div class="pr-img">
-                                    <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
-                                </div>
-                                <div>
-                                    <div class="pr-text">
-                                        <h3>Vino de Mora Alto cielo 750mL</h3>
-                                        <del>$ 50.000</del>
-                                        <p>$ 42.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    </div>   
                 </div>
             </section>
 
