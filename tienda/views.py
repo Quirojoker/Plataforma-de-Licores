@@ -10,6 +10,29 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.cache import cache
 import random
 
+
+# Views auxiliare para obtener promociones aleatorias
+def obtener_promociones_aleatorias():
+    cache_key = 'productos_promocion_general'
+    productos_promocion = cache.get(cache_key)
+    
+    if productos_promocion is None:
+        promociones = producto.objects.filter(en_promocion=True)
+        
+        if promociones.exists():
+            promociones_ids = list(promociones.values_list('id', flat=True))
+            ids_aleatorios = random.sample(
+                promociones_ids, 
+                min(8, len(promociones_ids))
+            )
+            productos_promocion = producto.objects.filter(id__in=ids_aleatorios)
+        else:
+            productos_promocion = producto.objects.none()
+        
+        cache.set(cache_key, productos_promocion, 3600)
+    
+    return productos_promocion
+
 #Views inicio.
 def inicio(request):
     cache_key = 'productos_aleatorios_home'
@@ -24,20 +47,7 @@ def inicio(request):
         else:
             productos = producto.objects.filter(stock__gt=0)[:6]
     
-    cache_key_promos = 'productos_promocion_home'
-    productos_promocion = cache.get(cache_key_promos)
-    
-    if not productos_promocion:
-        promociones_ids = list(producto.objects.filter(
-            en_promocion=True
-        ).values_list('id', flat=True))
-        
-        if promociones_ids:
-            ids_promos = random.sample(promociones_ids, min(8, len(promociones_ids)))
-            productos_promocion = producto.objects.filter(id__in=ids_promos)
-            cache.set(cache_key_promos, productos_promocion, 3600)
-        else:
-            productos_promocion = producto.objects.none()
+    productos_promocion = obtener_promociones_aleatorias()
 
     return render(request, '1.inicio.html', {
         'productos': productos,
@@ -45,7 +55,7 @@ def inicio(request):
         })
 
 #Views categoria productos.
-def categoria_productos(request, categoria_id, orden=None):
+def categoria_productos(request, categoria_id, orden=None):  
     categoria_actual = categoria.objects.get(id=categoria_id)
     productos_categoria = producto.objects.filter(categoria=categoria_actual)
 
@@ -59,16 +69,26 @@ def categoria_productos(request, categoria_id, orden=None):
     else:
         productos_categoria = productos_categoria.order_by('id')
 
+    productos_promocion = obtener_promociones_aleatorias()
+
     return render(request, '2.categoria_productos.html', {
         'categoria': categoria_actual,
         'productos': productos_categoria,
-        'orden_actual': orden
+        'orden_actual': orden,
+        'productos_promocion': productos_promocion
     })
+
 
 #Views detalle productos.
 def detalle_productos(request, producto_id): 
-    producto_actual = producto.objects.get(id=producto_id) 
-    return render(request, '3.detalle_productos.html', {'producto': producto_actual})
+    producto_actual = producto.objects.get(id=producto_id)
+
+    productos_promocion = obtener_promociones_aleatorias()
+
+    return render(request, '3.detalle_productos.html', {
+        'producto': producto_actual,
+        'productos_promocion': productos_promocion
+        })
 
 #Views busqueda.
 def buscar_productos(request):
@@ -82,11 +102,15 @@ def buscar_productos(request):
         )
     else:
         productos = producto.objects.none()
+
+    productos_promocion = obtener_promociones_aleatorias()
     
     return render(request, '4.resultados_busqueda.html', {
         'productos': productos,
         'query': query
+        ,'productos_promocion': productos_promocion
     })
+
 
 
 #Views auxiliar del carrito.
@@ -109,15 +133,18 @@ def ver_carrito(request):
     request.session['cart_items_count'] = total_items
     
     subtotal_carrito = sum(item.subtotal() for item in items)
+
+    productos_promocion = obtener_promociones_aleatorias()
     
     context = {
         'carrito': carrito,
         'items': items,
         'subtotal_carrito': subtotal_carrito,
-        'total_carrito': carrito.total() if items else 0
+        'total_carrito': carrito.total() if items else 0,
+        'productos_promocion': productos_promocion
     }
-    
-    response = render(request, '5.carrito.html', context)
+
+    response = render(request, '5.carrito.html',context)
     response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
@@ -223,11 +250,13 @@ def checkout(request):
     
     subtotal_carrito = sum(item.subtotal() for item in items)
     total_carrito = subtotal_carrito
+    productos_promocion = obtener_promociones_aleatorias()
     
     context = {
         'items': items,
         'subtotal_carrito': subtotal_carrito,
         'total_carrito': total_carrito,
+        'productos_promocion': productos_promocion
     }
     
     return render(request, '6.checkout.html', context)
@@ -347,10 +376,12 @@ def procesar_pedido(request):
 
 # Views de confirmación de pedido
 def confirmacion_pedido(request, pedido_id):
+    producto_promocion = obtener_promociones_aleatorias()
     pedido_obj = get_object_or_404(pedido, id=pedido_id)
     
     context = {
         'pedido': pedido_obj,
+        'productos_promocion': producto_promocion
     }
     
     return render(request, '7.confirmacion_pedido.html', context)
@@ -441,5 +472,13 @@ def marcar_en_camino(request, pedido_id):
 # Views Segumiento de Pedido
 def seguimiento_pedido(request, pedido_id):
     pedido_obj = get_object_or_404(pedido, id=pedido_id)
-    return render(request, '10.seguimiento_pedido.html', {'pedido': pedido_obj})
+
+    productos_promocion = obtener_promociones_aleatorias()
+
+    context = {
+        'pedido': pedido_obj,
+        'productos_promocion': productos_promocion
+    }
+
+    return render(request, '10.seguimiento_pedido.html', context)
 

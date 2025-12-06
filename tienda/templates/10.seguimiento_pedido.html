@@ -81,7 +81,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="#">Promociones</a>
+                                    <a class="nav-link text-white" href="#Nuestras-Promociones">Promociones</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="#">Recetas</a>
@@ -225,6 +225,111 @@
                 </div>
             </section>
 
+            <!-- Categorias-->
+            <section id="Nuestras-Categorías" class="slider-products pt-6 pb-6">
+                <div class="container">
+                    <div class="text-center">
+                        <h6>Nuestras Categorías</h6>
+                        <h2>Explora Nuestra Variedad de Licores</h2>
+                    </div>
+                    <div class="slider-category">
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=2 %}">
+                                <img src="{% static 'tienda/img/poker-botella.png' %}" alt="poker-botella" class="poker-botella">
+                                <div class="cat-text">Cervezas <br> comerciales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=3 %}">
+                                <img src="{% static 'tienda/img/cerveza-artesanal.png' %}" alt="cerveza-artesanal" class="cerveza-artesanal">
+                                <div class="cat-text">Cervezas <br> Artesanales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=4 %}">
+                                <img src="{% static 'tienda/img/vino-comercial.png' %}" alt="vino-comercial" class="vino-comercial">
+                                <div class="cat-text">Vinos <br> Comerciales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=5 %}">
+                                <img src="{% static 'tienda/img/vino-artesanal.png' %}" alt="vino-artesanal" class="vino-artesanal">
+                                <div class="cat-text">Vinos <br> Artesanales</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=9 %}">
+                                <img src="{% static 'tienda/img/aguardiente.png' %}" alt="aguardiente" class="aguardiente">
+                                <div class="cat-text">Aguardiente</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=10 %}">
+                                <img src="{% static 'tienda/img/ron.png' %}" alt="ron" class="ron">
+                                <div class="cat-text">Rón</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=11 %}"> 
+                                <img src="{% static 'tienda/img/whisky.png' %}" alt="whisky" class="whisky">
+                                <div class="cat-text">Whisky</div>
+                            </a>
+                        </div>
+                        <div class="slides-cat">
+                            <a href="{% url 'categoria_productos' categoria_id=8 %}">
+                                <img src="{% static 'tienda/img/sangría-1.png' %}" alt="sangría-1" class="sangría-1">
+                                <div class="cat-text">Sangría</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recetas img-->
+            <section class="image-cta-sec py-4">
+                <div class="container">
+                    <a href="#" class="cta-recipe-link">
+                        <img src="{% static 'tienda/img/Recetas.png' %}" alt="Explora la Mixología"
+                            class="img-fluid cta-recipe-image">
+                    </a>
+                </div>
+            </section>
+            
+            <!-- Promociones-->
+            <section class="slider-products pt-6 pb-6" id="Nuestras-Promociones">
+                <div class="container">
+                    <div class="tittle text-center">
+                        <h6 class="descuento">Descuentos en Licores</h6>
+                        <h2 class="especiales"><span>¿Buscas precios realmente especiales?</span></h2>
+                    </div>
+                    <div class="slider-category">
+                        {% for producto in productos_promocion %}
+                        <div>
+                            <div class="product-box-1">
+                                <div class="pr-img-1 d-flex align-items-center justify-content-center">
+                                    <a href="{% url 'detalle_productos' producto_id=producto.id %}">
+                                        {% if producto.imagen %}
+                                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid" style="max-height: 200px; width: auto;">
+                                        {% else %}
+                                        <img src="{% static 'tienda/img/Vino-de-Mora-Alto-Cielo-750ml.png' %}" alt="Vino-de-Mora-Alto-Cielo-750ml" class="Vino-de-Mora-Alto-Cielo-750ml">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="pr-text p-3 text-center">
+                                        <h3>{{ producto.nombre }}</h3>
+                                        {% if producto.precio_promocional %}
+                                        <del>$ {{ producto.precio_excesivo|floatformat:0 }}</del>
+                                        <p>$ {{ producto.precio_promocional|floatformat:0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>   
+                </div>
+            </section>
 
             <!-- Footer -->
             <hr>
@@ -266,7 +371,7 @@
                                 <a href="#" class="text-white">Recetas</a>
                             </p>
                             <p>
-                                <a href="#" class="text-white">Promociones</a>
+                                <a href="#Nuestras-Promociones" class="text-white">Promociones</a>
                             </p>
                             <p>
                                 <a href="#" class="text-white">Contacto</a>
