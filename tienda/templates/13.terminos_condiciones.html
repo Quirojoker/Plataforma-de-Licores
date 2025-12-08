@@ -48,6 +48,7 @@
             </div>
             {% endfor %}
         {% endif %}
+
         <div id="main-site-content">
             <!-- Barra de navegación-->
             <header class="header loaded">
@@ -89,196 +90,86 @@
                                     <a class="nav-link text-white" href="{% url 'contacto' %}">Contacto</a>
                                 </li>
                             </ul>
-                            <div class="shop-icon">
-                                <ul>
-                                    <li><a href=""><i class="fa-solid fa-shield-heart"></i></a></li>
-                                    <li>
-                                        <a href="{% url 'ver_carrito' %}" class="position-relative">
-                                            <i class="fa-solid fa-cart-shopping"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count" 
-                                                {% if not request.session.cart_items_count or request.session.cart_items_count == 0 %}style="display: none;"{% endif %}>
-                                                {{ request.session.cart_items_count|default:0 }}
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </nav>
             </header>
 
-            <!-- Barra de busqueda-->
-            <section class="search-section py-3">
+            <section class="licores-domicilio-sec mt-4 text-center">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <form action="{% url 'buscar' %}" method="get" class="d-flex">
-                                <input type="text" name="q" placeholder="¿Qué estás buscando?" class="form-control-1 me-2 search-input" value="{{ request.GET.q }}">
-                                <button type="submit" class="btn search-btn">
-                                    <div class="search-icon-1">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </div>
-                                </button>
-                            </form>
-                        </div>
+                    <div>
+                        <h3><i class="fas fa-exclamation-triangle"></i> Importante</h3>
+                        <p style="text-align: justify;">Al acceder, navegar o realizar compras en este sitio web, usted acepta los siguientes Términos y Condiciones. Si no está de acuerdo con ellos, le solicitamos abstenerse de usar nuestros servicios.</p>
                     </div>
-                </div>
-            </section>
-
-            <!-- Detalle de Productos-->
-            <section id="seccion-producto-detalle">
-                <div class="container mb-4">
-                    <div class="row">
-                        <!-- Columna izquierda -->
-                        <div class="col-md-6">
-                            <div class="product-gallery">
-                                <div class="scroll-container">
-                                    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-                                        <!-- Icono Compartir-->
-                                         <div class="share-icon position-absolute" onclick="shareProduct()">
-                                            <div class="rounded-circle border border-2 border p-2 d-flex align-items-center justify-content-center" style="border-color: #0077b6 !important;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 56 56" class="icono-compartir">
-                                                    <path fill="currentColor" d="M32.781 52.55c1.688 0 2.883-1.452 3.75-3.702L51.883 8.746c.422-1.078.68-2.039.68-2.836c0-1.523-.961-2.46-2.485-2.46c-.797 0-1.758.234-2.836.656L6.93 19.55c-1.97.75-3.493 1.945-3.493 3.656c0 2.156 1.641 2.883 3.891 3.563l12.68 3.843c1.476.47 2.32.422 3.328-.515l25.71-24.024c.305-.281.657-.234.892-.023c.234.234.257.586-.024.89l-23.93 25.805c-.89.961-.984 1.758-.515 3.328l3.703 12.375c.703 2.367 1.43 4.102 3.61 4.102"></path></svg>                                                
-                                            </div>
-                                         </div>
-                                        <!-- Imágenes del carrusel -->
-                                        <div class="carousel-inner">
-                                            {% if producto.imagen %}
-                                            <div class="carousel-item active">
-                                                <img src="{{ producto.imagen.url }}" class="d-block w-100" alt="{{ producto.nombre }}">
-                                            </div>
-                                            {% endif %}
-                                            {% for imagen in producto.imagenproducto_set.all %}
-                                            <div class="carousel-item {% if forloop.first and not producto.imagen %}active{% endif %}" >
-                                                <img src="{{ imagen.imagen.url }}" class="d-block w-100" style="height: 500px; object-fit: contain;" alt="{{ producto.nombre }}">
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    
+                    <div>
+                        <h1>Términos y Condiciones Valhalla</h1>
+                        
+                        <h2 style="text-align: justify;">1. Verificación de Edad</h2>
+                        <p style="text-align: justify;">En Colombia, la ley prohíbe la venta y el consumo de bebidas alcohólicas a menores de 18 años.</p>
+                        
+                        <div style="text-align: justify;">
+                            <p><i></i> Al ingresar a nuestro sitio web y realizar compras, usted declara y garantiza que es mayor de 18 años.</p>
                         </div>
                         
-                        <!-- Columna derecha -->
-                        <div class="col-md-6">
-                            <div class="tittle text-center mb-4">
-                                <h2><span>{{ producto.nombre }}</span></h2>
-                            </div>  
-                            <div class="rating-stars mb-4">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>                              
-                                <span class="ms-2" >5/5</span>
-                            </div>   
-                            <div class="d-flex justify-content-between align-items-center mb-5">
-                                <!-- Precio-->
-                                <div class="price-section">
-                                    <h2 class="text-white">$ {{ producto.precio|floatformat:0 }}</h2>
-                                    <h6 class="text-white">Cantidad Disponible: {{ producto.stock }}</h6>
-                                </div>
-                            </div>  
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="shop-icon">
+                        <ul style="text-align: justify;">
+                            <li>Valhalla podrá solicitar verificación adicional de edad durante la entrega, mediante documento de identidad válido.</li>
+                            <li>Si al momento de la entrega el cliente o el receptor resulta ser menor de edad, el pedido no será entregado y no se realizará reembolso de costos logísticos asociados.</li>
+                        </ul>
+                        
+                        <h2 style="text-align: justify;">2. Política de Precios y Pagos</h2>
+                        <ul style="text-align: justify;">
+                            <li>Todos los precios publicados en Valhalla están expresados en pesos colombianos (COP) e incluyen los impuestos aplicables.</li>
+                            <li>Los precios pueden cambiar sin previo aviso. El valor cobrado será el vigente al momento de la compra.</li>
+                            <li>Aceptamos los métodos de pago habilitados en la plataforma (por ejemplo: pago en línea, transferencias, sistemas de recaudo, entre otros).</li>
+                            <li>El pedido se procesará únicamente después de la confirmación exitosa del pago.</li>
+                            <li>En caso de error de precios manifiesto (por ejemplo, precios muy inferiores al valor real debido a fallos técnicos), Valhalla se reserva el derecho de cancelar el pedido y realizar la devolución correspondiente.</li>
+                        </ul>
+                        
+                        <h2 style="text-align: justify;">3. Política de Entregas en Cali</h2>
+                        <ul style="text-align: justify;">
+                            <li>Valhalla realiza entregas únicamente dentro de la ciudad de Cali, Colombia, en las zonas habilitadas por el servicio de domicilio.</li>
+                            <li>Los tiempos de entrega pueden variar según disponibilidad, clima, tráfico u otros factores externos.</li>
+                            <li>El cliente deberá proporcionar información precisa: nombre completo, dirección, barrio, referencias y número de contacto.</li>
+                            <li>Si el repartidor no logra entregar por datos incorrectos o ausencia del cliente, podrá:
                                 <ul>
-                                    <li><a href="#"><i class="fa-solid fa-shield-heart"></i></a></li>
+                                    <li>Reprogramarse la entrega con costo adicional, o</li>
+                                    <li>Cancelarse el pedido sin devolución del costo de envío.</li>
                                 </ul>
-                            </div>
-                                <a class="btn" href="{% url 'agregar_al_carrito' producto.id %}">Añadir al Carrito</a>
-                            </div>
-                            <hr>
-                            <div class="container">
-                                <div>
-                                    <div class="texto-justificado">
-                                        <p>
-                                            {{ producto.descripcion }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="container">
-                                <div class="row justify-content-center mb-4">
-                                    <div class="col-auto">
-                                        <div class="schedule-box-1 p-3 rounded-3">
-                                            <div class="col-auto text-center">
-                                                <img src="{% static 'tienda/img/map-location-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
-                                                <h6 class="delivery-city-title-1">Domicilios en Cali</h6>
-                                            </div>
-                                            <ul class="list-unstyled schedule-list-1 small">
-                                                <li>
-                                                    <span class="day fw-bold text-normal d-flex align-items-center">
-                                                        <i class="fa-solid fa-clock fa-2x me-3"></i>
-                                                        <span class="text-start">Compra con seguridad y recibe en 40 minutos</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center mb-4">
-                                    <div class="col-auto">
-                                        <div class="schedule-box-1 p-3 rounded-3">
-                                            <div class="col-auto text-center">
-                                                <img src="{% static 'tienda/img/sign-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
-                                                <h6 class="delivery-city-title-1">Totalmente frió</h6>
-                                            </div>
-                                            <ul class="list-unstyled schedule-list-1 small">
-                                                <li>
-                                                    <span class="day fw-bold text-normal d-flex align-items-center">
-                                                        <i class="fa-solid fa-igloo fa-2x me-3"></i>
-                                                        <span class="text-start">Tus bebidas llegan perfectamente frías</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center mb-4">
-                                    <div class="col-auto">
-                                        <div class="schedule-box-1 p-3 rounded-3">
-                                            <div class="col-auto text-center">
-                                                <img src="{% static 'tienda/img/traffic-fine-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
-                                                <h6 class="delivery-city-title-1">Producto 100% legal</h6>
-                                            </div>
-                                            <ul class="list-unstyled schedule-list-1 small">
-                                                <li>
-                                                    <span class="day fw-bold text-normal d-flex align-items-center">
-                                                        <i class="fa-solid fa-scale-balanced fa-2x me-3"></i>
-                                                        <span class="text-start">Comprar lo que es seguro no tiene precio</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <div class="schedule-box-1 p-3 rounded-3">
-                                            <div class="col-auto text-center">
-                                                <img src="{% static 'tienda/img/coin-icon-poster-1.png' %}" alt="ciudad" class="img-fluid delivery-ciudad-image-1">
-                                                <h6 class="delivery-city-title-1">Paga como quieras</h6>
-                                            </div>
-                                            <ul class="list-unstyled schedule-list-1 small">
-                                                <li>
-                                                    <span class="day fw-bold text-normal d-flex align-items-center">
-                                                        <i class="fa-solid fa-credit-card fa-2x me-3"></i>
-                                                        <span class="text-start">Todos los medios de pago, incluido contra entrega</span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </li>
+                            <li>La entrega se realizará únicamente a personas mayores de 18 años, previa verificación.</li>
+                        </ul>
+                        
+                        <h2 style="text-align: justify;">4. Responsabilidades del Cliente</h2>
+                        <p style="text-align: justify;">El cliente se compromete a:</p>
+                        <ul style="text-align: justify;">
+                            <li>Proporcionar información veraz y completa durante el registro o la compra.</li>
+                            <li>No compartir su cuenta con terceros menores de edad o no autorizados.</li>
+                            <li>Recibir el pedido personalmente o por medio de un adulto responsable.</li>
+                            <li>Revisar el estado del pedido al momento de la entrega y reportar inconsistencias dentro de las siguientes 2 horas.</li>
+                            <li>Hacer uso responsable del alcohol. Valhalla promueve el consumo moderado y responsable.</li>
+                        </ul>
+                        
+                        <h2 style="text-align: justify;">5. Limitación de Responsabilidad</h2>
+                        <ul style="text-align: justify;">
+                            <li>Valhalla no se hace responsable por daños derivados del uso indebido o irresponsable de bebidas alcohólicas por parte del cliente.</li>
+                            <li>No garantizamos disponibilidad permanente del sitio web o ausencia de errores técnicos.</li>
+                            <li>Valhalla no será responsable por demoras o fallas en la entrega causadas por eventos de fuerza mayor (bloqueos, disturbios, condiciones climáticas, accidentes, etc.).</li>
+                            <li>Valhalla tampoco será responsable por pérdidas indirectas, lucro cesante o daños consecuenciales derivados del uso del servicio.</li>
+                        </ul>
+                        
+                        <h2 style="text-align: justify;">6. Ley Aplicable y Jurisdicción</h2>
+                        <p style="text-align: justify;">Estos Términos y Condiciones se rigen por las leyes de la República de Colombia.</p>
+                        <p style="text-align: justify;">Cualquier controversia será sometida a los jueces competentes de la ciudad de Cali, Valle del Cauca.</p>
+                        
+                        <h2 style="text-align: justify;">7. Modificaciones de los Términos y Condiciones</h2>
+                        <p style="text-align: justify;">Valhalla podrá modificar, actualizar o ajustar los presentes Términos y Condiciones en cualquier momento. Las versiones actualizadas serán publicadas en el sitio web y entrarán en vigencia de inmediato.</p> 
                     </div>
                 </div>
             </section>
 
             
+
             <!-- Categorias-->
             <section id="Nuestras-Categorías" class="slider-products pt-6 pb-6">
                 <div class="container">

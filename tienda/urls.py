@@ -25,5 +25,6 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(template_name='11.login.html',redirect_authenticated_user=True), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('contacto/', views.contacto, name='contacto'),
+    path('terminos-y-condiciones/', views.terminos_y_condiciones, name='terminos_y_condiciones'),
 ]
 

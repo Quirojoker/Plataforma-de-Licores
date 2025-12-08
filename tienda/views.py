@@ -491,3 +491,11 @@ def contacto(request):
         'productos_promocion': productos_promocion
     })
 
+# Views terminos y condiciones
+def terminos_y_condiciones(request):
+    productos_promocion = obtener_promociones_aleatorias()
+
+    return render(request, '13.terminos_condiciones.html', {
+        'productos_promocion': productos_promocion
+    })
+
