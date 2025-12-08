@@ -26,5 +26,6 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('contacto/', views.contacto, name='contacto'),
     path('terminos-y-condiciones/', views.terminos_y_condiciones, name='terminos_y_condiciones'),
+    path('politica-de-privacidad/', views.politica_privacidad, name='politica_de_privacidad'),
 ]
 

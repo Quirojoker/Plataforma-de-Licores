@@ -499,3 +499,11 @@ def terminos_y_condiciones(request):
         'productos_promocion': productos_promocion
     })
 
+# Views Politica de privacidad
+def politica_privacidad(request):
+    productos_promocion = obtener_promociones_aleatorias()
+
+    return render(request, '14.politica_privacidad.html', {
+        'productos_promocion': productos_promocion
+    })
+
