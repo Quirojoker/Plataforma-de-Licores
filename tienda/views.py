@@ -482,3 +482,12 @@ def seguimiento_pedido(request, pedido_id):
 
     return render(request, '10.seguimiento_pedido.html', context)
 
+
+# Views pagina de contacto
+def contacto(request):
+    productos_promocion = obtener_promociones_aleatorias()
+
+    return render(request, '12.contacto.html', {
+        'productos_promocion': productos_promocion
+    })
+

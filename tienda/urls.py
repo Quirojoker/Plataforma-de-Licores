@@ -24,5 +24,6 @@ urlpatterns = [
     path('marcar-en-camino/<int:pedido_id>/', views.marcar_en_camino, name='marcar_en_camino'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='11.login.html',redirect_authenticated_user=True), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('contacto/', views.contacto, name='contacto'),
 ]
 

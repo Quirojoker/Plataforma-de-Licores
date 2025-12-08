@@ -95,172 +95,90 @@
                 </nav>
             </header>
 
-
-            <!-- Checkout -->
-            <section id="checkout-page" class="mt-5 pt-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="schedule-box-2 p-3 rounded-3">
-                                <h3 class="mb-4">Información de entrega</h3>
-                                <form id="checkout-form" method="POST" action="{% url 'procesar_pedido' %}">
-                                    {% csrf_token %}
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label>Nombre completo *</label>
-                                            <input type="text" name="nombre" required class="form-control-1">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label>Teléfono *</label>
-                                            <input type="tel" name="telefono" required class="form-control-1">
-                                        </div>
-                                    </div>
+            <div class="container py-5">
+                <h1 class="text-center mb-5">Contacta con Valhalla</h1>
+                
+                <div class="row">
+                    <!-- Info de contacto -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3><i class="fas fa-info-circle me-2"></i>Información</h3>
+                                
+                                <div class="mt-4">
+                                    <p class="d-flex align-items-center">
+                                        <i class="fas fa-map-marker-alt me-3 fa-2x" style="color: var( --primary-color);"></i>
+                                        <strong>Calle 61 Norte #2FN - 88, Cali, Colombia</strong>
+                                    </p>
                                     
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label>Email</label>
-                                            <input type="email" name="email" class="form-control-1">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label>Ciudad *</label>
-                                            <input type="text" name="ciudad" value="Cali" readonly class="form-control-1">
-                                        </div>
-                                    </div>
+                                    <p class="d-flex align-items-center mt-3">
+                                        <i class="fas fa-phone me-3 fa-2x" style="color: var( --primary-color);"></i>
+                                        <span>
+                                            <strong>Teléfonos:</strong><br>
+                                            300 379 9997
+                                            <br>
+                                            311 611 2595
+                                        </span>
+                                    </p>
                                     
-                                    <!-- Horario de entrega -->
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label>Zona de Cali *</label>
-                                            <select name="zona_entrega" class="form-control-1" required>
-                                                <option value="norte">Zona Norte</option>
-                                                <option value="sur">Zona Sur</option>
-                                                <option value="oriente">Zona Oriente</option>
-                                                <option value="occidente">Zona Occidente</option>
-                                                <option value="centro">Centro</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label>Tipo de entrega *</label>
-                                            <select name="tipo-entrega" class="form-control-1" id="tipo-entrega" required>
-                                                <option value="express">Express (Hoy mismo 40-60 min)</option>
-                                                <option value="programada">Entrega Programada</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Campos para entrega programada (ocultos inicialmente) -->
-                                    <div id="programada-fields" style="display: none;">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label>Fecha de entrega *</label>
-                                                <input type="date" name="fecha_entrega" class="form-control-1" id="fecha-programada">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label>Hora de entrega *</label>
-                                                <select name="hora_entrega" class="form-control-1" required>
-                                                    <option value="08:00">8:00 AM</option>
-                                                    <option value="09:00">9:00 AM</option>
-                                                    <option value="10:00">10:00 AM</option>
-                                                    <option value="11:00">11:00 AM</option>
-                                                    <option value="12:00">12:00 PM</option>
-                                                    <option value="13:00">1:00 PM</option>
-                                                    <option value="14:00">2:00 PM</option>
-                                                    <option value="15:00">3:00 PM</option>
-                                                    <option value="16:00">4:00 PM</option>
-                                                    <option value="17:00">5:00 PM</option>
-                                                    <option value="18:00">6:00 PM</option>
-                                                    <option value="19:00">7:00 PM</option>
-                                                    <option value="20:00">8:00 PM</option>
-                                                    <option value="21:00">9:00 PM</option>
-                                                    <option value="22:00">10:00 PM</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12 mb-3">
-                                            <label>Dirección completa *</label>
-                                            <textarea name="direccion" required class="form-control-1" placeholder="Ej: Carrera 10 #20-30, Barrio Granada"></textarea>
-                                        </div>
-                                    </div>
+                                    <p class="d-flex align-items-center mt-3">
+                                        <i class="fab fa-whatsapp text-success me-3 fa-2x" style="color: var( --primary-color);"></i>
+                                        <span>
+                                            <strong>WhatsApp:</strong>
+                                            <br>
+                                            +57 300 379 9997
+                                            <br>
+                                            +57 311 611 2595
+                                        </span>
+                                    </p>
                                     
-                                    <div class="row">
-                                        <div class="col-12 mb-3">
-                                            <label>Instrucciones especiales (opcional)</label>
-                                            <textarea name="instrucciones" class="form-control-1" placeholder="Ej: Timbre 2 veces, unidad Valhalla apt 501, dejar en porteria"></textarea>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Método de pago -->
-                                    <div class="payment-methods mb-3">
-                                        <h3>Método de pago</h3>
-                                        <div class="payment-options">
-                                            <label class="d-block mb-2 border p-2 rounded" style="border-color: var(--primary-color) !important;">
-                                                <input type="radio" name="metodo_pago" value="efectivo"  class="me-2" required>
-                                                Efectivo (Contra entrega)
-                                            </label>
-                                            <div>
-                                                <button type="submit" class="btn d-block mx-auto w-50 mb-4" id="confirmar-pedido-btn" style="display: none;">
-                                                    Confirmar Pedido
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                    <p class="d-flex align-items-center mt-3">
+                                        <i class="fas fa-envelope me-3 fa-2x" style="color: var( --primary-color);"></i>
+                                        <span>
+                                            <strong>Email:</strong><br>
+                                            sebastianarangoquiroga@gmail.com
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        
-                        <!-- Columna derecha: Resumen del pedido -->
-                        <div class="col-lg-5">
-                            <div class="schedule-box-2 p-3 rounded-3">
-                                <div class="card-header text-center">
-                                    <h3 class="mb-3">Tu Pedido</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div id="checkout-items" class="mb-4">
-                                        <table class="table table-borderless table-dark" style="background-color: #1a1a1a !important;">
-                                            <thead>
-                                                <tr>
-                                                    <th style="color: var(--primary-color);">Producto</th>
-                                                    <th class="text-center" style="color: var(--primary-color);">Cantidad</th>
-                                                    <th class="text-center" style="color: var(--primary-color);">Precio</th>
-                                                    <th class="text-end" style="color: var(--primary-color);">Subtotal</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for item in items %}
-                                                <tr>
-                                                    <td><strong>{{ item.producto.nombre }}</strong></td>
-                                                    <td class="text-center">{{ item.cantidad }}</td>
-                                                    <td class="text-center"><strong>${{ item.precio|floatformat:0 }}</strong></td>
-                                                    <td class="text-end" style="color: var(--primary-color);"><strong>${{ item.subtotal|floatformat:0 }}</strong></td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
+                    </div>
+                    
+                    <!-- Horarios -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>
+                                    <i class="fas fa-clock me-2"></i>Horarios de Entrega</h3>
+                                
+                                <div class="mt-4">
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-shipping-fast me-2 mb-4"></i>
+                                        <strong>Entrega Express:</strong> Hoy mismo
+                                        <br>
+                                        <i class="fas fa-shipping-fast me-2"></i>
+                                        <strong>Entrega Programada</strong> Escoje la fecha y hora que más te convenga
                                     </div>
-                                </div>
-                                <div class="summary-totals">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Subtotal:&nbsp; </span> 
-                                        <strong id="subtotal-general" style="color: var(--primary-color);"> ${{ subtotal_carrito|floatformat:0 }}</strong>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>Envío: </span>
-                                        <span>¡Gratis!</span>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <strong>Total: </strong>
-                                        <strong id="total-general" style="color: var(--primary-color);">${{ total_carrito|floatformat:0 }}</strong>
+                                    
+                                    <h5 class="mt-4">Zonas de Cobertura:</h5>
+                                    <ul>
+                                        <li>Zona Norte</li>
+                                        <li>Zona Sur</li>
+                                        <li>Zona Oriente</li>
+                                        <li>Zona Occidente</li>
+                                        <li>Centro de Cali</li>
+                                    </ul>
+                                    
+                                    <div class="alert alert-warning mt-4">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        <small>Verificamos edad al momento de la entrega. Se requiere documento de identificación.</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <!-- Categorias-->
             <section id="Nuestras-Categorías" class="slider-products pt-6 pb-6">
@@ -481,7 +399,7 @@
                 </div>
             </footer>
         </div>
-        
+
         <!--script de Jquery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
