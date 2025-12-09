@@ -508,7 +508,7 @@ def politica_privacidad(request):
     })
 
 # Views Politica de Cookies
-def politica_cookies(request):
+def politica_cookies(request): 
     productos_promocion = obtener_promociones_aleatorias()
 
     return render(request, '15.politica_cookies.html', {
