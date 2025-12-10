@@ -605,3 +605,21 @@ function activarAutoRefreshDashboard() {
         setTimeout(() => location.reload(), 500);
     }, 60000);
 }
+
+// Cerrar menú móvil al hacer click en un enlace //
+document.addEventListener('DOMContentLoaded', function() {
+    // Cerrar menú móvil al hacer click en cualquier enlace del navbar
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+            // Solo en móvil (ancho < 768px)
+            if (window.innerWidth < 768) {
+                var navbar = document.getElementById('navbarSupportedContent');
+                if (navbar && navbar.classList.contains('show')) {
+                    // Bootstrap 5: cerrar el menú
+                    var bsCollapse = new bootstrap.Collapse(navbar);
+                    bsCollapse.hide();
+                }
+            }
+        });
+    });
+});
