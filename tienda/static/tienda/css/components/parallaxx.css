@@ -1,3 +1,5 @@
+/* ===== DESKTOP ===== */
+
 /* Estilos para Efecto Parallax */
 
 #age-verifier * {
@@ -116,4 +118,26 @@
         color .6s ease-in-out box-shadow 0.6s ease-in-out,
         transform 0.6s ease-in-out;
     will-change: transform, box-shadow;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    #text {
+        font-size: 4.0em !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 51% !important;
+    }
+
+    .parallax-img-2 {    
+    position: absolute !important;
+    width: 100% !important;
+    height: auto !important;
+    left: 25% !important;
+    transform: translateX(-80%) scale(2) !important;
+    top: 40% !important;
+    object-fit: contain !important;
+    }
+        
 }
