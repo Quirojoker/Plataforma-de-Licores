@@ -96,3 +96,12 @@ img {
     -moz-user-select: none; 
     user-select: none;
 }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+        #Nuestras-Categorías,
+        #Nuestras-Promociones,
+        #Nuestras-Recetas {
+             scroll-margin-top: 200px;
+        }
+}
