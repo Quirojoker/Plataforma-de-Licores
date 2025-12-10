@@ -613,9 +613,11 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function() {
             // Solo en móvil (ancho < 768px)
             if (window.innerWidth < 768) {
+                if (this.getAttribute('href') === '#') {
+                    return;
+                }
                 var navbar = document.getElementById('navbarSupportedContent');
                 if (navbar && navbar.classList.contains('show')) {
-                    // Bootstrap 5: cerrar el menú
                     var bsCollapse = new bootstrap.Collapse(navbar);
                     bsCollapse.hide();
                 }

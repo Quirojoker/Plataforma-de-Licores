@@ -1,0 +1,8 @@
+/* Estilos específicos para el footer en pantallas pequeñas */
+
+@media (max-width: 768px) {
+    footer .text-nowrap {
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+}
