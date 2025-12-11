@@ -22,6 +22,32 @@ $('.slider-category').slick({
     arrows: false,
     draggable: true,
     swipeToSlide: true,
+    responsive: [
+        {
+            breakpoint: 1024,  // Tablet horizontal
+            settings: {
+                slidesToShow: 4
+            }
+        },
+        {
+            breakpoint: 768,   // Tablet vertical / móvil grande
+            settings: {
+                slidesToShow: 3
+            }
+        },
+        {
+            breakpoint: 480,   // Móvil
+            settings: {
+                slidesToShow: 2
+            }
+        },
+        {
+            breakpoint: 375,   // iPhone SE
+            settings: {
+                slidesToShow: 1
+            }
+        }
+    ]
 });
 
 // Efecto Parallax //
