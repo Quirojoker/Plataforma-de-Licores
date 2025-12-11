@@ -85,5 +85,35 @@
     margin-left: auto !important;
     margin-right: auto !important;
     }
+
+    .recipe-hero {
+        height: auto !important;
+        padding: 20px !important;
+        flex-direction: column !important;
+    }
+    
+    .recipe-hero .row {
+        flex-direction: column !important;
+    }
+    
+    .recipe-image-float {
+        position: relative !important;
+        width: 200px !important;
+        height: 200px !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin-bottom: 15px !important;
+        transition: all 0.5s ease !important;
+    }
+
+    .recipe-hero:hover .recipe-image-float {
+    transition: 0.8s ease;
+    transform: translatey(-40px) scale(1.2);
+    }
+
+    .recipe-hero:hover .recipe-button-animate {
+        transition: 0.8s ease;
+        transform: translatey(30px) scale(1.1);
+    }
     
 }
