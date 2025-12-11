@@ -72,3 +72,18 @@
     transition: 0.8s ease;
     transform: translateX(40px) scale(1.1);
 }
+
+/*--- Responsive ---*/
+@media (max-width: 768px) {
+    .cta-recipe-image {
+    height: 100px !important;
+    min-height: 100px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    width: 95% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    }
+    
+}
