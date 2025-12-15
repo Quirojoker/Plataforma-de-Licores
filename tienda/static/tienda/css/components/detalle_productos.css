@@ -111,5 +111,12 @@
     text-justify: inter-word !important;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .scroll-container {
+        transform: none !important;
+    }
+}
+
 
 

@@ -164,41 +164,43 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// VERSIÓN ORIGINAL MEJORADA - Scroll libre y natural
+// Detalle de productos - Scroll libre y natural
 document.addEventListener('DOMContentLoaded', function () {
-    const scrollContainer = document.querySelector('.scroll-container');
-    const productSection = document.querySelector('#seccion-producto-detalle');
+    if (window.innerWidth > 768) {
+        const scrollContainer = document.querySelector('.scroll-container');
+        const productSection = document.querySelector('#seccion-producto-detalle');
 
-    if (scrollContainer && productSection) {
-        // Calcular alturas REALES
-        const sectionTop = productSection.offsetTop;
-        const sectionHeight = productSection.offsetHeight;
-        const windowHeight = window.innerHeight;
+        if (scrollContainer && productSection) {
+            // Calcular alturas REALES
+            const sectionTop = productSection.offsetTop;
+            const sectionHeight = productSection.offsetHeight;
+            const windowHeight = window.innerHeight;
 
-        // Cuánto puede bajar la imagen (diferencia entre sección y ventana)
-        const maxScrollMovement = sectionHeight - windowHeight;
+            // Cuánto puede bajar la imagen (diferencia entre sección y ventana)
+            const maxScrollMovement = sectionHeight - windowHeight;
 
-        window.addEventListener('scroll', function () {
-            const scrolled = window.pageYOffset;
+            window.addEventListener('scroll', function () {
+                const scrolled = window.pageYOffset;
 
-            // Scroll RELATIVO dentro de la sección
-            const scrollWithinSection = scrolled - sectionTop;
+                // Scroll RELATIVO dentro de la sección
+                const scrollWithinSection = scrolled - sectionTop;
 
-            if (scrollWithinSection >= 0 && scrollWithinSection <= maxScrollMovement) {
-                // DENTRO de la sección - movimiento proporcional al scroll real
-                const movement = scrollWithinSection * 1.2; // Factor de velocidad
-                scrollContainer.style.transform = `translateY(${movement}px)`;
+                if (scrollWithinSection >= 0 && scrollWithinSection <= maxScrollMovement) {
+                    // DENTRO de la sección - movimiento proporcional al scroll real
+                    const movement = scrollWithinSection * 1.2; // Factor de velocidad
+                    scrollContainer.style.transform = `translateY(${movement}px)`;
 
-            } else if (scrollWithinSection < 0) {
-                // ANTES de la sección - reset
-                scrollContainer.style.transform = `translateY(0px)`;
+                } else if (scrollWithinSection < 0) {
+                    // ANTES de la sección - reset
+                    scrollContainer.style.transform = `translateY(0px)`;
 
-            } else {
-                // DESPUÉS de la sección - mantener posición final
-                const finalMovement = maxScrollMovement * 1.2;
-                scrollContainer.style.transform = `translateY(${finalMovement}px)`;
-            }
-        });
+                } else {
+                    // DESPUÉS de la sección - mantener posición final
+                    const finalMovement = maxScrollMovement * 1.2;
+                    scrollContainer.style.transform = `translateY(${finalMovement}px)`;
+                }
+            });
+        }    
     }
 });
 
