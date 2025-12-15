@@ -874,3 +874,334 @@
         opacity: 0.5;
     }
 }
+
+/* --Responsive-- */
+@media (max-width: 768px) {
+
+    .slides img {
+        display: none !important;
+    }
+
+    .slider-content {
+        display: none !important;
+    }
+
+    .hero-slider .slides,
+    .hero-slider .slides-1,
+    .hero-slider .slides-2,
+    .hero-slider .slides-3 {
+        background-size: cover;
+        background-position: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        height: 450px !important; 
+        padding: 20px 0 !important;
+    }
+
+    .overlay-images img {
+        position: absolute;
+    }
+
+    .hero-slider img {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .overlay-images {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    /* Slide 1 */
+
+    .overlay-images .glass
+    /* cristal*/
+        {
+        display: block !important;
+        height: 70% !important;
+        position: absolute !important;
+        top: 51% !important;
+        left: 49% !important;
+        transform: translate(-50%, -50%) translateY(40px) !important;
+    }
+
+    .overlay-images .ice:nth-child(9)
+    /*hielo*/
+        {
+        display: block !important;
+        height: 70% !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50%  !important;
+        transform: translate(-50%, -50%) translateY(50px) !important;
+    }  
+
+    .overlay-images .tecate
+    /*tecate*/
+        {
+        display: block !important;
+        height: 50% !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) translatey(100px)!important;
+        z-index: 3 !important;
+    }
+
+    .overlay-images .corona
+    /*corona*/
+        {
+        display: block !important;
+        height: 73% !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 68% !important;
+        transform: translate(-50%, -50%) translatey(50px)!important;
+        z-index: 2!important;
+    }
+
+    .overlay-images .poker-lata
+    /*poker-lata*/
+        {
+        display: block !important;
+        height: 46% !important;
+        position: absolute !important;
+        top: 42% !important;
+        left: 30% !important;
+        transform: translate(-50%, -50%) translatey(140px) !important;
+        z-index: 2 !important;
+    }
+
+    .slides .slider-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        position: relative !important;
+        height: auto !important;
+        margin: 0 auto !important; 
+        text-align: center !important;
+        padding-top: 0px !important; 
+        justify-content: flex-start !important;
+        margin-top: -10px !important;
+    }
+
+    .slides .slider-content h6 {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0px auto 0px auto !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+    }
+
+    .titulo-principal {
+        display: block !important;
+        text-align: center !important;
+        margin: 0 auto 0px auto !important;
+        position: relative !important; 
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        white-space: nowrap !important;
+    }
+
+    .p-principal {
+        display: block !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        padding: 0 20px !important; 
+    }
+
+    /* Slide 2 */
+
+    .slides-1 img {
+        display: none !important;
+    }
+
+    .slides-1 .slider-content p {
+        display: none !important;
+    }
+
+    .slides-1 .slider-content .btn {
+        display: none !important;
+    }
+
+    .slides-1 .overlay-images .uvas:nth-child(3)
+    /* uvas*/
+        {
+        display: block !important;
+        height: 50% !important;
+        position: absolute !important;
+        left: 0% !important;
+        transform: rotate(0deg) !important;
+        filter: blur(1px) !important;
+    }
+
+    .slides-1 .overlay-images .vino
+    /* vino*/
+        {
+        display: block !important;
+        height: 100% !important;
+        position: absolute !important;
+        top: 35% !important;
+        left: 52% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .slides-1 .slider-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        position: relative !important;
+        height: auto !important;
+        margin: 0 auto !important; 
+        text-align: center !important;
+        padding-top: 0px !important; 
+        justify-content: flex-start !important;
+        margin-top: 325px !important;
+    }
+
+    .slides-1 .slider-content h6,
+    .slides-1 .slider-content h2 {
+        position: static !important;
+        text-wrap: balance !important;
+        transform: none !important;
+        margin: 0;
+        }
+
+    /* slide 3 */
+
+    .slides-2 img {
+        display: none !important;
+    }
+
+    .slides-2 .slider-content .btn {
+        display: none !important;
+    }
+
+    .slides-2 .overlay-images .humo-4 {
+        display: block !important;
+        position: absolute !important;
+        top: 0% !important;
+        left: 0% !important;
+        height: 100% !important;
+        transform: translateX(3%) !important;
+        filter: blur(3px) !important;
+    }
+
+    .slides-2 .overlay-images .luz {
+        display: block !important;
+        position: absolute !important;
+        top: 0% !important;
+        left: 0% !important;
+        height: 100% !important;
+        filter: blur(3px) !important;
+    }
+
+    .slides-2 .overlay-images .aguardiente {
+        display: block !important;
+        position: absolute !important;
+        height: 70% !important;
+        top: 60% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .slides-2 .slider-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        position: relative !important;
+        height: auto !important;
+        margin: 0 auto !important; 
+        text-align: center !important;
+        padding-top: 0px !important; 
+        justify-content: flex-start !important;
+        margin-top: -15px !important;
+    }
+
+    .slides-2 .slider-content h6,
+    .slides-2 .slider-content h2 {
+        position: static !important;
+        text-wrap: balance !important;
+        transform: none !important;
+        margin: 0;
+    }
+
+    /* Slide 4 */
+
+    .slides-3 img {
+        display: none !important;
+    }
+
+    .slides-3 .slider-content svg {
+        display: none !important;
+    }
+
+    .slides-3 .slider-content .btn {
+        display: none !important;
+    }
+
+    .slides-3 .overlay-images .hojas-1 {
+        /*hojas-1*/
+        display: block !important;
+        position: absolute !important;
+        height: 80% !important;
+        width: auto !important;
+        top: 20% !important;
+        right: 0% !important;
+        filter: blur(3px) !important;
+    }
+
+    .slides-3 .overlay-images .recetas-1 {
+        /* recetas-1*/
+        display: block !important;
+        position: absolute !important;
+        width: 150% !important;
+        height: auto !important;
+        top: 37% !important;
+        left: 50% !important;
+        z-index: 1 !important;
+   }
+
+   .slides-3 .slider-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        position: relative !important;
+        height: auto !important;
+        margin: 0 auto !important; 
+        text-align: center !important;
+        padding-top: 0px !important; 
+        justify-content: flex-start !important;
+        margin-top: -15px !important;
+    }
+
+    .slides-3 .slider-content h1 {
+        position: static !important;
+        font-size: 4rem !important;
+        transform: none !important;
+        margin: 31px !important;
+    }
+
+     .slides-3 .slider-content .btn {
+        display: block !important;
+        position: static !important;
+        margin-top: 191px !important;
+
+    }
+
+}
