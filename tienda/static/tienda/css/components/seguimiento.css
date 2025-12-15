@@ -63,3 +63,44 @@
 .w-33 { width: 33%; }
 .w-66 { width: 66%; }
 .w-100 { width: 100%; }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .progress-tracker {
+        padding: 0 10px;
+    }
+    
+    .step {
+        flex: 1;
+        min-width: 0; 
+        padding: 0 5px;
+    }
+    
+    .step-icon {
+        font-size: 1.5rem !important;
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 auto 5px !important;
+    }
+    
+    .step-label {
+        font-size: 0.75rem !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .step-time {
+        font-size: 0.7rem !important;
+    }
+    
+    .progress-tracker h5 {
+        font-size: 1rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .progress-line {
+        margin: 0 20px;
+    }
+}
