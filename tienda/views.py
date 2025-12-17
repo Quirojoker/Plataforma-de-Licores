@@ -7,6 +7,7 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 from django.utils.timezone import localtime
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponseForbidden
 from django.core.cache import cache
 import random
 
@@ -386,32 +387,41 @@ def confirmacion_pedido(request, pedido_id):
     
     return render(request, '7.confirmacion_pedido.html', context)
 
-# Views para verificar grupos de administrador
-def es_administrador(user):
-    return user.groups.filter(name='administrador').exists()
-
 # Views de dashboard/admin
 @login_required
-@user_passes_test(es_administrador)
 def dashboard_admin(request):
+    if not request.user.groups.filter(name='administrador').exists():
+        return HttpResponseForbidden("No tienes permisos para ver este dashboard")
+    
     pedidos = pedido.objects.all().order_by('-fecha')
     return render(request, '8.admin_dashboard.html', {'pedidos': pedidos})
 
 
-# Views para verificar grupos de domiciliario
-def es_domiciliario(user):
-    return user.groups.filter(name='domiciliarios').exists()
-
 # Views de dashboard/domiciliario
 @login_required
-@user_passes_test(es_domiciliario)
 def dashboard_domiciliario(request):
+    if not request.user.groups.filter(name='domiciliarios').exists():
+        return HttpResponseForbidden("No tienes permisos para ver este dashboard")
+    
     pedidos = pedido.objects.all().order_by('-fecha')
     domiciliarios = pedido.objects.exclude(domiciliario__isnull=True).values_list('domiciliario', flat=True).distinct()
     return render(request, '9.domiciliario_dashboard.html', {
         'pedidos': pedidos,
         'domiciliarios': domiciliarios
     })
+
+# Views Redireccionar login
+@login_required
+def redireccion_login(request):
+    user = request.user
+
+    if user.groups.filter(name='administrador').exists():
+        return redirect('dashboard_admin')
+
+    if user.groups.filter(name='domiciliarios').exists():
+        return redirect('domiciliario_dashboard')
+
+    return redirect('inicio')
 
 
 # Views Marcar Pedido como Entregado

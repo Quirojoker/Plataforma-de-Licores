@@ -28,5 +28,6 @@ urlpatterns = [
     path('terminos-y-condiciones/', views.terminos_y_condiciones, name='terminos_y_condiciones'),
     path('politica-de-privacidad/', views.politica_privacidad, name='politica_de_privacidad'),
     path('politica-de-cookies/', views.politica_cookies, name='politica_de_cookies'),
+    path('redirigir/', views.redireccion_login, name='redireccion_login'),
 ]
 
