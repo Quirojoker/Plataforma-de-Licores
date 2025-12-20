@@ -10,3 +10,15 @@ media/
 
 # Configuración de VS Code
 .vscode/
+
+#.env archivos de entorno
+.env
+
+# Archivos de base de datos SQLite
+db.sqlite3
+
+# Archivos de django-staticfiles
+staticfiles/
+
+# Archivos de logs
+*.log
