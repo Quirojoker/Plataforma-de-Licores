@@ -164,3 +164,5 @@ LOGOUT_REDIRECT_URL = '/'
 
 # WhiteNoise settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#staticfiles_storage = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
