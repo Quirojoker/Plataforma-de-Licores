@@ -140,7 +140,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # para colectar los archivos estaticos en produccion
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -167,3 +166,5 @@ LOGOUT_REDIRECT_URL = '/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #staticfiles_storage = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+WHITENOISE_USE_FINDERS = True
