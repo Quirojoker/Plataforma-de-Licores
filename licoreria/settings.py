@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+import dj_database_url
 from decouple import config
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,16 +82,27 @@ WSGI_APPLICATION = 'licoreria.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-    }
+    'default': dj_database_url.parse(
+        os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=False
+    )
 }
 
+#DATABASE_URL = os.environ.get("DATABASE_URL")
+
+#if DATABASE_URL:
+    #DATABASES = {
+        #"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
+#else:
+    #DATABASES = {
+        #"default": {
+            #"ENGINE": "django.db.backends.postgresql",
+            #"NAME": config("DB_NAME"),
+            #"USER": config("DB_USER"),
+            #"PASSWORD": config("DB_PASSWORD"),
+            #"HOST": config("DB_HOST"),
+            #"PORT": config("DB_PORT"),}}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
