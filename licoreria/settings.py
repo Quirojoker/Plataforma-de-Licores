@@ -15,6 +15,9 @@ import os
 from dotenv import load_dotenv
 import dj_database_url
 from decouple import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 load_dotenv()
 
@@ -44,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'tienda'
 ]
 
@@ -83,8 +88,7 @@ WSGI_APPLICATION = 'licoreria.wsgi.application'
 
 DATABASES = {'default': dj_database_url.parse(os.getenv('DATABASE_URL'),conn_max_age=600,ssl_require=False)}
 
-#DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': config('DB_NAME'),'USER': config('DB_USER'),'PASSWORD': config('DB_PASSWORD'),'HOST': config('DB_HOST'),
-#'PORT': config('DB_PORT'),}}
+#DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': config('DB_NAME'),'USER': config('DB_USER'),'PASSWORD': config('DB_PASSWORD'),'HOST': config('DB_HOST'),'PORT': config('DB_PORT'),}}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -150,3 +154,20 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #staticfiles_storage = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_USE_FINDERS = True
+
+
+# Configuración de Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
