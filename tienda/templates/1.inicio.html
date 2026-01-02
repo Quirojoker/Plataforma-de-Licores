@@ -1,4 +1,5 @@
 {% load static %}
+{% load cloudinary %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,13 +45,13 @@
         <!-- Bloqueo Overlay-->
         <div id="age-verifier">
             <section id="parallax-container">
-                <img src="{% static 'tienda/img/fondo.jpg' %}" alt="Fondo" class="parallax-img-1">
+                <img src="{% static 'tienda/img/fondo.webp' %}" alt="Fondo" class="parallax-img-1" width="2049" height="1152" loading="eager" fetchpriority="high">
 
-                <img src="{% static 'tienda/img/moon.png' %}" alt="luna" class="parallax-img-2">
+                <img src="{% static 'tienda/img/moon.webp' %}" alt="luna" class="parallax-img-2" width="2049" height="1152" loading="lazy">
 
-                <img src="{% static 'tienda/img/mountain.png' %}" alt="montaña" class="parallax-img-3">
+                <img src="{% static 'tienda/img/mountain.webp' %}" alt="montaña" class="parallax-img-3" width="2049" height="1152" loading="lazy">
 
-                <img src="{% static 'tienda/img/road-2.png' %}" alt="road" class="parallax-img-4">
+                <img src="{% static 'tienda/img/road-2.webp' %}" alt="road" class="parallax-img-4" width="1536" height="1024" loading="lazy">
 
                 <h2 id="text">Valhalla</h2>
             </section>

@@ -151,6 +151,8 @@ LOGOUT_REDIRECT_URL = '/'
 # WhiteNoise settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+WHITENOISE_MAX_AGE = 31536000 # 1 año en segundos
+
 #staticfiles_storage = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_USE_FINDERS = True
