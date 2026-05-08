@@ -21,6 +21,10 @@ class producto(models.Model):
     stock = models.PositiveBigIntegerField()
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)#pendiente definir urls banco de img.
     categoria = models.ForeignKey(categoria, on_delete=models.CASCADE)
+    keywords = models.TextField(
+        blank=True,
+        help_text="Palabras clave separadas por comas para mejorar la búsqueda del producto."
+    )
     en_promocion = models.BooleanField(default=False)
     precio_promocional = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     precio_excesivo = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)

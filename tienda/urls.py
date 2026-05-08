@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
 
@@ -29,5 +29,8 @@ urlpatterns = [
     path('politica-de-privacidad/', views.politica_privacidad, name='politica_de_privacidad'),
     path('politica-de-cookies/', views.politica_cookies, name='politica_de_cookies'),
     path('redirigir/', views.redireccion_login, name='redireccion_login'),
+    # API URLs
+    path('api/', include('tienda.api.urls')),
+    
 ]
 
