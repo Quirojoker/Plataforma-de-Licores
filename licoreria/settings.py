@@ -1,3 +1,5 @@
+'Settings for licoreria project'
+
 """
 Django settings for licoreria project.
 
