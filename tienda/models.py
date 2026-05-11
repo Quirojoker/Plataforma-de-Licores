@@ -35,7 +35,7 @@ class producto(models.Model):
 #imagenes detalle del producto
 class ImagenProducto(models.Model):
     producto = models.ForeignKey(producto, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='productos/')
+    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
     orden = models.IntegerField(default=0)
 
     class Meta:
