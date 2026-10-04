@@ -22,3 +22,6 @@ staticfiles/
 
 # Archivos de logs
 *.log
+
+#excel
+.xlsx
